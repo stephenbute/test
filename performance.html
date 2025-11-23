@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>WealthOS | Sales Performance</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WealthOS | Sales Performance (Copilot-Driven)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
@@ -11,115 +12,177 @@
         .brand-red { color: #db0011; }
         .bg-brand-red { background-color: #db0011; }
         .border-brand-red { border-color: #db0011; }
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: #f1f1f1; }
-        ::-webkit-scrollbar-thumb { background: #cbd5e0; border-radius: 3px; }
+        @keyframes pulse-slow {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        .animate-pulse-slow {
+            animation: pulse-slow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
         .chat-bubble-in { animation: slideIn 0.3s ease-out; }
         @keyframes slideIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        /* Responsive chat panel */
+        .copilot-panel {
+            width: 100%;
+            border-left: none;
+        }
+        @media (min-width: 1024px) {
+            .copilot-panel {
+                width: 384px; /* w-96 */
+                border-left: 1px solid #e5e7eb;
+            }
+        }
     </style>
 </head>
-<body class="bg-gray-100 text-gray-800 h-screen flex overflow-hidden">
+<body class="bg-gray-100 text-gray-800 h-screen flex flex-col lg:flex-row overflow-hidden">
 
-    <aside class="w-64 bg-white border-r border-gray-200 flex flex-col flex-shrink-0 z-20">
-        <div class="h-16 flex items-center px-6 border-b border-gray-200">
-            <div class="w-8 h-8 bg-brand-red text-white flex items-center justify-center font-bold text-lg mr-3"><i class="fa-solid fa-building-columns"></i></div>
-            <span class="font-bold text-xl tracking-tight text-gray-800">WEALTH<span class="text-red-600">OS</span></span>
-        </div>
-        <nav class="flex-1 py-6 space-y-1">
-            <a href="crm.html" class="block px-6 py-4 text-gray-600 hover:bg-gray-50 border-l-4 border-transparent flex items-center gap-3">
-                <i class="fa-solid fa-magnifying-glass"></i> CRM Discovery
-            </a>
-            <a href="planning.html" class="block px-6 py-4 text-gray-600 hover:bg-gray-50 border-l-4 border-transparent flex items-center gap-3">
-                <i class="fa-solid fa-user-check"></i> Financial Planning
-            </a>
-            <a href="performance.html" class="block px-6 py-4 bg-red-50 text-red-700 border-l-4 border-brand-red flex items-center gap-3">
-                <i class="fa-solid fa-chart-pie"></i> Performance
-            </a>
-        </nav>
-        <div class="p-6 border-t border-gray-200 bg-gray-50">
-            <div class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-full bg-gray-300 border-2 border-white overflow-hidden"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=John"></div>
-                <div><p class="text-sm font-bold">John Anderson</p><p class="text-xs text-gray-500">Relationship Manager</p></div>
+    <div class="flex-1 flex flex-col overflow-y-auto">
+        <header class="bg-white border-b border-gray-200 flex-shrink-0 sticky top-0 z-10">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+                <div class="flex items-center">
+                    <div class="w-8 h-8 bg-brand-red text-white flex items-center justify-center font-bold text-lg mr-3 rounded"><i class="fa-solid fa-chart-pie"></i></div>
+                    <h2 class="text-xl font-bold text-gray-800">Team Performance Review</h2>
+                </div>
+                <nav class="flex space-x-4">
+                    <a href="crm.html" class="text-gray-600 hover:text-gray-900 flex items-center"><i class="fa-solid fa-magnifying-glass mr-1"></i> CRM</a>
+                    <a href="planning.html" class="text-gray-600 hover:text-gray-900 flex items-center"><i class="fa-solid fa-user-check mr-1"></i> Planning</a>
+                    <a href="performance.html" class="text-red-600 font-bold border-b-2 border-brand-red pb-1 flex items-center"><i class="fa-solid fa-chart-pie mr-1"></i> Performance</a>
+                </nav>
+                <a href="index.html" class="text-gray-400 hover:text-brand-red text-lg"><i class="fa-solid fa-house"></i></a>
             </div>
-        </div>
-    </aside>
-
-    <main class="flex-1 flex flex-col min-w-0 bg-slate-100">
-        <header class="bg-white border-b border-gray-200 h-16 flex items-center justify-between px-8 shadow-sm">
-            <h2 class="text-xl font-bold text-gray-800">Sales Performance Review</h2>
-            <div class="text-sm text-gray-500"><i class="fa-regular fa-calendar mr-2"></i> Nov 22, 2025</div>
         </header>
 
-        <div class="flex-1 overflow-y-auto p-8">
-            <div class="grid grid-cols-3 gap-6 mb-8">
-                <div class="bg-white p-6 rounded-xl border-l-4 border-brand-red shadow-sm">
-                    <p class="text-sm text-gray-500 uppercase">My YTD Revenue</p>
-                    <h3 class="text-3xl font-bold text-gray-800 mt-1">$1.2M</h3>
-                    <p class="text-xs text-green-600 font-bold mt-2"><i class="fa-solid fa-arrow-up"></i> 12% vs Target</p>
+        <main class="flex-1 p-4 sm:p-6 lg:p-8">
+            <div class="max-w-5xl mx-auto space-y-8">
+                <div class="text-center mb-8">
+                    <h1 class="text-3xl font-bold text-gray-900 mb-2">Q4 Sales Leaderboard</h1>
+                    <p class="text-gray-500">View team performance and Copilot recommendations.</p>
                 </div>
-                <div class="bg-white p-6 rounded-xl border-l-4 border-gray-800 shadow-sm">
-                    <p class="text-sm text-gray-500 uppercase">Team Average</p>
-                    <h3 class="text-3xl font-bold text-gray-800 mt-1">$950k</h3>
-                    <p class="text-xs text-gray-500 mt-2">North District A</p>
-                </div>
-                <div class="bg-white p-6 rounded-xl border-l-4 border-gray-300 shadow-sm">
-                    <p class="text-sm text-gray-500 uppercase">District Rank</p>
-                    <h3 class="text-3xl font-bold text-gray-800 mt-1">#4</h3>
-                    <p class="text-xs text-gray-500 mt-2">Out of 45 Managers</p>
-                </div>
-            </div>
 
-            <div class="grid grid-cols-2 gap-6">
-                <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
-                    <div class="p-4 bg-gray-50 border-b"><h3 class="font-bold text-gray-700">Team Leaderboard</h3></div>
-                    <table class="w-full text-sm text-left">
-                        <thead class="bg-white text-gray-500 border-b"><tr><th class="p-3">Name</th><th class="p-3">Revenue</th></tr></thead>
-                        <tbody>
-                            <tr class="bg-red-50"><td class="p-3 font-bold text-red-700">1. John Anderson</td><td class="p-3 font-bold">$1.2M</td></tr>
-                            <tr><td class="p-3">2. Alex Johnson</td><td class="p-3">$1.1M</td></tr>
-                            <tr><td class="p-3">3. Mike Ross</td><td class="p-3">$980k</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-                    <h3 class="font-bold text-gray-700 mb-4">District Performance</h3>
-                    <div class="space-y-4">
-                        <div><div class="flex justify-between text-sm mb-1"><span>North District</span><span class="text-green-600 font-bold">105%</span></div><div class="bg-gray-200 h-3 rounded-full"><div class="bg-green-600 h-3 rounded-full" style="width: 100%"></div></div></div>
-                        <div><div class="flex justify-between text-sm mb-1"><span>East District</span><span class="text-yellow-600 font-bold">92%</span></div><div class="bg-gray-200 h-3 rounded-full"><div class="bg-yellow-500 h-3 rounded-full" style="width: 92%"></div></div></div>
+                <div id="copilot-insight-card" class="bg-yellow-100 rounded-xl p-5 shadow-xl border-l-8 border-yellow-500 transition duration-300">
+                    <div class="flex items-start gap-4">
+                        <div class="text-4xl text-yellow-700"><i class="fa-solid fa-magnifying-glass-chart"></i></div> <div class="flex-1">
+                            <h3 class="font-bold text-xl text-yellow-800 mb-2 flex items-center">
+                                <span class="bg-yellow-500 text-gray-800 text-xs font-bold px-2 py-0.5 rounded-full mr-2">ACTION</span> Copilot Insight: Coaching Opportunity
+                            </h3>
+                            <p class="text-sm text-yellow-700">Team member **Alex Johnson** is trending 15% behind his peers in HNW client acquisition. **Proactive action required** to prevent a Q4 miss.</p>
+                            <button onclick="sendActionToCopilot('Proactively Schedule 1:1 Review with Alex Johnson')" class="mt-4 text-sm bg-yellow-600 hover:bg-yellow-700 text-white font-semibold px-4 py-2 rounded-lg transition shadow-md flex items-center">
+                                <i class="fa-solid fa-calendar-plus mr-2"></i> Proactively Schedule 1:1 Review
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </main>
 
-    <aside class="w-96 bg-white border-l border-gray-200 flex flex-col shadow-xl z-30">
-        <div class="h-16 bg-gradient-to-r from-gray-900 to-gray-800 text-white flex items-center px-4 justify-between shadow-md">
-            <span class="font-semibold tracking-wide text-sm"><div class="inline-block w-2 h-2 bg-green-400 rounded-full animate-pulse mr-2"></div>Wealth Copilot</span>
-            <i class="fa-solid fa-robot text-gray-400"></i>
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    
+                    <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 lg:col-span-2">
+                        <h3 class="font-bold text-lg mb-4 border-b pb-2 flex items-center"><i class="fa-solid fa-ranking-star text-gray-500 mr-2"></i> Individual Revenue Ranking</h3>
+                        <table class="w-full text-left table-auto">
+                            <thead>
+                                <tr class="text-gray-500 text-xs uppercase border-b">
+                                    <th class="p-3">Rank</th><th class="p-3">Name</th><th class="p-3">Revenue</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="bg-red-50"><td class="p-3 font-bold text-red-700">1.</td><td class="p-3 font-bold text-red-700">John Anderson</td><td class="p-3 font-bold">$1.2M</td></tr>
+                                <tr class="hover:bg-gray-50"><td class="p-3">2.</td><td class="p-3">Mike Ross</td><td class="p-3">$1.1M</td></tr>
+                                <tr class="hover:bg-yellow-50"><td class="p-3">3.</td><td class="p-3 text-yellow-700 font-bold">Alex Johnson <i class="fa-solid fa-arrow-down text-red-500 text-xs ml-1"></i></td><td class="p-3 text-yellow-700 font-bold">$980k</td></tr>
+                                <tr class="hover:bg-gray-50"><td class="p-3">4.</td><td class="p-3">David Lee</td><td class="p-3">$950k</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+                        <h3 class="font-bold text-lg mb-4 border-b pb-2 flex items-center"><i class="fa-solid fa-list-check text-gray-500 mr-2"></i> Quarterly Goal Progress</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <p class="flex justify-between text-sm mb-1"><span class="font-semibold">Team AUM Growth</span><span class="font-bold text-green-600">85% Complete</span></p>
+                                <div class="w-full bg-gray-200 rounded-full h-2"><div class="bg-green-500 h-2 rounded-full transition-all duration-500" style="width: 85%"></div></div>
+                            </div>
+                            <div>
+                                <p class="flex justify-between text-sm mb-1"><span class="font-semibold">New Client Acquisition</span><span class="font-bold text-yellow-600">65% Complete</span></p>
+                                <div class="w-full bg-gray-200 rounded-full h-2"><div class="bg-yellow-500 h-2 rounded-full transition-all duration-500" style="width: 65%"></div></div>
+                            </div>
+                            <div>
+                                <p class="flex justify-between text-sm mb-1"><span class="font-semibold">Insurance Product Penetration</span><span class="font-bold text-red-600">40% Complete</span></p>
+                                <div class="w-full bg-gray-200 rounded-full h-2"><div class="bg-red-500 h-2 rounded-full transition-all duration-500" style="width: 40%"></div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <div class="copilot-panel bg-white flex flex-col flex-shrink-0 p-4 shadow-2xl lg:shadow-none">
+        <div class="flex justify-between items-center mb-4 pb-2 border-b border-gray-200">
+            <h3 class="text-xl font-bold text-gray-900 flex items-center"><i class="fa-solid fa-sparkles text-brand-red mr-2"></i> Performance Copilot</h3>
+            <span class="text-xs text-gray-500">Q4 Focus</span>
         </div>
-        <div id="chat-container" class="flex-1 overflow-y-auto p-4 space-y-4 bg-slate-50">
-             <div class="bg-white p-3 rounded-lg shadow-sm border border-gray-200 text-sm text-gray-700">
-                <strong>Reminder:</strong> Your Q4 review with Manager Alex Johnson is due.
+        
+        <div id="chat-container" class="flex-1 overflow-y-auto space-y-4 mb-4">
+            <div class="flex gap-3 chat-bubble-in mb-4">
+                <div class="w-8 h-8 bg-gray-900 rounded-full flex-shrink-0 flex items-center justify-center text-white text-xs"><i class="fa-solid fa-robot"></i></div>
+                <div class="bg-white p-3 rounded-lg rounded-tl-none shadow-sm border border-gray-200 text-sm text-gray-700 w-full">I've identified an immediate coaching opportunity with Alex Johnson. How would you like to proceed?</div>
             </div>
         </div>
-        <div class="p-4 bg-white border-t border-gray-200">
-            <div class="flex gap-2 overflow-x-auto mb-3 pb-1">
-                <button onclick="scheduleReview()" class="whitespace-nowrap px-3 py-1 bg-white border border-gray-300 rounded-full text-xs text-gray-600 hover:text-brand-red">Schedule Review</button>
+
+        <div class="flex-shrink-0 space-y-3">
+            <div class="flex flex-wrap gap-2">
+                <button onclick="sendActionToCopilot('Generate a coaching plan for Alex Johnson on HNW acquisition')" class="text-xs px-3 py-1 bg-gray-200 rounded-full text-gray-700 hover:bg-gray-300 transition flex items-center"><i class="fa-solid fa-person-chalkboard mr-1"></i> Generate Coaching Plan</button>
+                <button onclick="sendActionToCopilot('Filter all team data to show only new client acquisition metrics')" class="text-xs px-3 py-1 bg-gray-200 rounded-full text-gray-700 hover:bg-gray-300 transition flex items-center"><i class="fa-solid fa-filter mr-1"></i> Filter Acquisition Data</button>
             </div>
-            <div class="relative">
-                <input type="text" placeholder="Type a command..." class="w-full border border-gray-300 rounded-lg pl-4 pr-10 py-3 text-sm focus:outline-none focus:border-brand-red shadow-sm">
-                <button class="absolute right-3 top-3 text-gray-400 hover:text-brand-red"><i class="fa-solid fa-paper-plane"></i></button>
+            <div class="relative flex items-center">
+                <button class="text-gray-400 hover:text-brand-red mr-2 text-lg"><i class="fa-solid fa-microphone"></i></button>
+                <input type="text" id="copilot-input" onkeypress="if(event.key === 'Enter') handleCopilotInput()" placeholder="Type text or click a shortcut..." class="flex-1 border border-gray-300 rounded-full pl-4 pr-10 py-2 text-sm focus:outline-none focus:border-brand-red shadow-sm">
+                <button onclick="handleCopilotInput()" class="absolute right-3 top-2 text-brand-red hover:text-red-700"><i class="fa-solid fa-paper-plane"></i></button>
             </div>
         </div>
-    </aside>
+    </div>
 
     <script>
-        function scheduleReview() {
-            const chat = document.getElementById('chat-container');
-            chat.innerHTML += `<div class="flex gap-3 justify-end chat-bubble-in mb-4"><div class="bg-brand-red text-white p-3 rounded-lg rounded-tr-none shadow-sm text-sm">Schedule my review with Alex Johnson</div></div>`;
+        function sendActionToCopilot(action) {
+            sendChatMessage(action, true); // Send the action text as user message
+            
+            // Simulate AI response
             setTimeout(() => {
-                chat.innerHTML += `<div class="flex gap-3 chat-bubble-in mb-4"><div class="w-8 h-8 bg-gray-900 rounded-full flex-shrink-0 flex items-center justify-center text-white text-xs"><i class="fa-solid fa-robot"></i></div><div class="bg-white p-3 rounded-lg rounded-tl-none shadow-sm border border-gray-200 text-sm text-gray-700">Success! I've locked <strong>Friday 10:00 AM</strong> on both calendars.</div></div>`;
+                let botResp = `Confirmed: I have initiated the task for **${action}**. Results will be available in the chat shortly.`;
+                if (action.includes('Schedule')) {
+                    botResp = `**Confirmed:** A 30-minute 1:1 review has been added to both your and Alex Johnson's calendar for tomorrow at 2:00 PM.`;
+                }
+                sendChatMessage(botResp, false);
             }, 800);
+        }
+        
+        function sendChatMessage(message, isUser = true) {
+            const chatContainer = document.getElementById('chat-container');
+            
+            if (isUser) {
+                // User message bubble
+                chatContainer.innerHTML += `<div class="flex gap-3 justify-end chat-bubble-in mb-4"><div class="bg-brand-red text-white p-3 rounded-lg rounded-tr-none shadow-sm text-sm">${message}</div></div>`;
+            } else {
+                // AI response bubble
+                chatContainer.innerHTML += `<div class="flex gap-3 chat-bubble-in mb-4"><div class="w-8 h-8 bg-gray-900 rounded-full flex-shrink-0 flex items-center justify-center text-white text-xs"><i class="fa-solid fa-robot"></i></div><div class="bg-white p-3 rounded-lg rounded-tl-none shadow-sm border border-gray-200 text-sm text-gray-700 w-full">${message}</div></div>`;
+            }
+
+            // Scroll to bottom
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+
+        function handleCopilotInput() {
+            const input = document.getElementById('copilot-input');
+            if (input.value.trim() !== '') {
+                const message = input.value.trim();
+                sendChatMessage(message, true);
+                
+                // Simulate AI response
+                setTimeout(() => {
+                    sendChatMessage(`Analysis requested for: **${message}**. Please wait for the results.`, false);
+                }, 800);
+                
+                input.value = '';
+            }
         }
     </script>
 </body>

@@ -20,7 +20,7 @@
 </head>
 <body class="bg-gray-100 text-gray-800 h-screen flex overflow-hidden">
 
-    <aside class="w-64 bg-white border-r border-gray-200 flex flex-col flex-shrink-0 z-20">
+    <aside class="hidden md:flex md:w-56 lg:w-64 bg-white border-r border-gray-200 flex-col flex-shrink-0 z-20">
         <div class="h-16 flex items-center px-6 border-b border-gray-200">
             <div class="w-8 h-8 bg-brand-red text-white flex items-center justify-center font-bold text-lg mr-3"><i class="fa-solid fa-building-columns"></i></div>
             <span class="font-bold text-xl tracking-tight text-gray-800">WEALTH<span class="text-red-600">OS</span></span>
@@ -69,7 +69,7 @@
                 </div>
                 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
-                    <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition cursor-pointer group">
+                    <a href="planning.html?client=alice" class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition cursor-pointer group">
                         <div class="flex items-center gap-3 mb-3">
                             <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Alice" class="w-10 h-10 rounded-full bg-blue-50">
                             <div>
@@ -81,7 +81,7 @@
                             <span><i class="fa-solid fa-phone mr-1"></i> Phone Call</span>
                             <span class="font-semibold">Yesterday</span>
                         </div>
-                    </div>
+                    </a>
 
                     <a href="planning.html?client=robert" class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition cursor-pointer group">
                         <div class="flex items-center gap-3 mb-3">
@@ -140,16 +140,19 @@
         </div>
     </main>
 
-    <aside class="w-96 bg-white border-l border-gray-200 flex flex-col shadow-xl z-30">
+    <aside class="hidden lg:flex lg:w-96 bg-white border-l border-gray-200 flex-col shadow-xl z-30">
         <div class="h-16 bg-gradient-to-r from-gray-900 to-gray-800 text-white flex items-center px-4 justify-between shadow-md">
-            <span class="font-semibold tracking-wide text-sm"><div class="inline-block w-2 h-2 bg-green-400 rounded-full animate-pulse mr-2"></div>Wealth Copilot</span>
+            <span class="font-semibold tracking-wide text-sm"><div class="inline-block w-2.5 h-2.5 bg-green-400 rounded-full animate-pulse mr-2"></div>Wealth Copilot</span>
             <i class="fa-solid fa-robot text-gray-400"></i>
         </div>
         
         <div id="chat-container" class="flex-1 overflow-y-auto p-4 space-y-4 bg-slate-50">
+            <div class="bg-red-50 p-4 rounded-xl border-l-4 border-brand-red text-sm text-gray-800 shadow-md chat-bubble-in">
+                <p class="font-bold text-brand-red mb-1"><i class="fa-solid fa-triangle-exclamation mr-1"></i> Proactive Nudge</p>
+                <p>Two of your premier clients have maturing fixed-income assets next week. This is an opportunity for a portfolio review.</p>
+            </div>
             <div class="bg-white p-3 rounded-lg shadow-sm border border-gray-200 text-sm text-gray-700">
-                Good morning, John. <br><br>
-                Below you will find your <strong>Search History</strong>, as well as <strong>Trending Queries</strong> currently popular among the North District team.
+                Good morning, John. Below you will find your Search History, as well as Trending Queries.
             </div>
         </div>
 
@@ -198,7 +201,7 @@
 
             // Bot response (after a slight delay for effect)
             setTimeout(() => {
-                chat.innerHTML += `<div class="flex gap-3 chat-bubble-in mb-4"><div class="w-8 h-8 bg-gray-900 rounded-full flex-shrink-0 flex items-center justify-center text-white text-xs"><i class="fa-solid fa-robot"></i></div><div class="bg-white p-3 rounded-lg rounded-tl-none shadow-sm border border-gray-200 text-sm text-gray-700 w-full">I found 2 profiles matching that criteria. <br><strong>Robert Chen</strong> matches 95% of your 'Tech Sector' parameters due to his recent liquidity event.</div></div>`;
+                chat.innerHTML += `<div class="flex gap-3 chat-bubble-in mb-4"><div class="w-8 h-8 bg-gray-900 rounded-full flex-shrink-0 flex items-center justify-center text-white text-xs"><i class="fa-solid fa-robot"></i></div><div class="bg-white p-3 rounded-lg rounded-tl-none shadow-sm border border-gray-200 text-sm text-gray-700 w-full">I found 2 profiles matching that criteria. <br>Robert Chen matches 95% of your 'Tech Sector' parameters due to his recent liquidity event.</div></div>`;
                 chat.scrollTop = chat.scrollHeight;
             }, 600);
         }

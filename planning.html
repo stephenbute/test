@@ -22,7 +22,7 @@
 </head>
 <body class="bg-gray-100 text-gray-800 h-screen flex overflow-hidden">
 
-    <aside class="w-64 bg-white border-r border-gray-200 flex flex-col flex-shrink-0 z-20">
+    <aside class="hidden md:flex md:w-56 lg:w-64 bg-white border-r border-gray-200 flex-col flex-shrink-0 z-20">
         <div class="h-16 flex items-center px-6 border-b border-gray-200">
             <div class="w-8 h-8 bg-brand-red text-white flex items-center justify-center font-bold text-lg mr-3"><i class="fa-solid fa-building-columns"></i></div>
             <span class="font-bold text-xl tracking-tight text-gray-800">WEALTH<span class="text-red-600">OS</span></span>
@@ -55,6 +55,7 @@
                 <select id="client-selector" onchange="switchClient(this.value)" class="border border-gray-300 rounded text-sm p-1 focus:border-brand-red outline-none">
                     <option value="robert">Robert Chen (Business/Cash)</option>
                     <option value="sarah">Sarah Jenkins (New/Insurance)</option>
+                    <option value="alice">Alice Num (First Home/Growth)</option>
                 </select>
                 <div class="text-sm text-gray-500 ml-4"><i class="fa-regular fa-calendar mr-2"></i> Nov 23, 2025</div>
             </div>
@@ -106,9 +107,9 @@
         </div>
     </main>
 
-    <aside class="w-96 bg-white border-l border-gray-200 flex flex-col shadow-xl z-30 flex-shrink-0">
+    <aside class="hidden lg:flex lg:w-96 bg-white border-l border-gray-200 flex-col shadow-xl z-30 flex-shrink-0">
         <div class="h-16 bg-gradient-to-r from-gray-900 to-gray-800 text-white flex items-center px-4 justify-between shadow-md flex-shrink-0">
-            <span class="font-semibold tracking-wide text-sm"><div class="inline-block w-2 h-2 bg-green-400 rounded-full animate-pulse mr-2"></div>Wealth Copilot</span>
+            <span class="font-semibold tracking-wide text-sm"><div class="inline-block w-2.5 h-2.5 bg-green-400 rounded-full animate-pulse mr-2"></div>Wealth Copilot</span>
             <i class="fa-solid fa-robot text-gray-400"></i>
         </div>
         
@@ -146,8 +147,8 @@
                     { label: "Equities", value: "30%", color: "bg-gray-600", note: "Underweight" },
                     { label: "Fixed Income", value: "10%", color: "bg-gray-400", note: "Stable" }
                 ],
-                holdingsMsg: "<div class='text-center'><p>Current Strategy: <strong class='text-gray-700'>Short-term Liquidity Focus</strong></p><p class='text-xs'>Client holds $3.1M in Money Market Funds</p></div>",
-                copilotInit: "I've analyzed Robert's portfolio. <br><strong>Alert:</strong> He is holding 60% in Cash ($3.1M). As he plans to retire in 8 years, this cash drag will miss his $8M target.",
+                holdingsMsg: "<div class='text-center'><p>Current Strategy: <span class='font-bold text-gray-700'>Short-term Liquidity Focus</span></p><p class='text-xs'>Client holds $3.1M in Money Market Funds</p></div>",
+                copilotInit: `<div class="bg-red-50 p-3 rounded-lg border-l-4 border-brand-red text-sm text-gray-800 shadow-sm"><p class="font-bold text-brand-red mb-1"><i class="fa-solid fa-circle-exclamation mr-1"></i> ALERT: Cash Drag Risk</p>I've analyzed Robert's portfolio. He is holding 60% in Cash ($3.1M). As he plans to retire in 8 years, this cash drag will miss his $8M target.</div>`,
                 chips: [
                     { label: "Suggest Growth Funds", action: "funds" },
                     { label: "Show Florida Property", action: "property" }
@@ -171,10 +172,35 @@
                     { label: "Insurance Coverage", value: "Unknown", color: "bg-gray-300", note: "Policy Review Needed" }
                 ],
                 holdingsMsg: "<div class='text-center text-gray-400'><i class='fa-solid fa-lock mb-2'></i><p>Investment Holdings Data Pending</p><p class='text-xs'>Client has not yet authorized portfolio transfer.</p></div>",
-                copilotInit: "Welcome Sarah (New Client). <br><strong>Gap Analysis:</strong> We have limited data. She mentioned 'Overseas Education' for her son but we lack funding specifics.",
+                copilotInit: `<div class="bg-blue-50 p-3 rounded-lg border-l-4 border-blue-600 text-sm text-gray-800 shadow-sm"><p class="font-bold text-blue-600 mb-1"><i class="fa-solid fa-search mr-1"></i> Gap Analysis: Missing Data</p>Welcome Sarah (New Client). We have limited data. She mentioned 'Overseas Education' for her son but we lack funding specifics.</div>`,
                 chips: [
                     { label: "Talking Points (Discovery)", action: "talking_points" },
                     { label: "Education Cost Calculator", action: "calc" }
+                ]
+            },
+            alice: {
+                name: "Alice Num",
+                img: "https://api.dicebear.com/7.x/avataaars/svg?seed=Alice",
+                status: "Premier Client | Client since 2021",
+                risk: "Moderate",
+                demo: "35 / Single",
+                job: "Tech Analyst",
+                aum: "$750,000",
+                timeline: "Long-term horizon",
+                goals: [
+                    { title: "First Home Purchase", desc: "Timeline: 5 Years • Est: $800k", priority: "MEDIUM", color: "blue" },
+                    { title: "Grow Portfolio", desc: "Target: $1M AUM in 3 years", priority: "HIGH PRIORITY", color: "red" }
+                ],
+                stats: [
+                    { label: "Equities", value: "70%", color: "bg-green-600", note: "Balanced ETF exposure" },
+                    { label: "Fixed Income", value: "20%", color: "bg-blue-400", note: "Bonds" },
+                    { label: "Cash & Equivalents", value: "10%", color: "bg-gray-400", note: "Emergency fund" }
+                ],
+                holdingsMsg: "<div class='text-center'><p>Current Strategy: <span class='font-bold text-gray-700'>Balanced Growth Portfolio</span></p><p class='text-xs'>Focus on low-cost global ETFs</p></div>",
+                copilotInit: `<div class="bg-green-50 p-3 rounded-lg border-l-4 border-green-600 text-sm text-gray-800 shadow-sm"><p class="font-bold text-green-600 mb-1"><i class="fa-solid fa-circle-check mr-1"></i> Actionable Insight</p>Alice's portfolio is on track for her goals. Review her mortgage options for her first home.</div>`,
+                chips: [
+                    { label: "Review Mortgage Pre-Approval", action: "mortgage" },
+                    { label: "Introduce new ETF", action: "etf" }
                 ]
             }
         };
@@ -239,14 +265,12 @@
             // Update Holdings Panel
             document.getElementById('holdings-panel').innerHTML = data.holdingsMsg;
 
-            // Reset Chat
+            // Reset Chat (using new HTML structure for alerts)
             const chat = document.getElementById('chat-container');
             chat.innerHTML = `
                 <div class="flex gap-3 chat-bubble-in">
                     <div class="w-8 h-8 bg-gray-900 rounded-full flex-shrink-0 flex items-center justify-center text-white text-xs"><i class="fa-solid fa-robot"></i></div>
-                    <div class="bg-white p-3 rounded-lg rounded-tl-none shadow-sm border border-gray-200 text-sm text-gray-700">
-                        ${data.copilotInit}
-                    </div>
+                    <div class="flex-1">${data.copilotInit}</div>
                 </div>`;
             
             // Update Chips
@@ -266,7 +290,7 @@
                 if(action === 'funds') {
                     userText = "Suggest funds to reduce cash drag";
                     botResp = `To meet the $8M retirement goal, Robert needs equity exposure. <br><br>
-                    <strong>Recommendation:</strong><br>
+                    Recommendation:<br>
                     1. <em>Schroder Asian Growth Fund</em> (4-Star)<br>
                     2. <em>BlackRock Global Allocation</em><br><br>
                     "Robert, these allow you to keep liquidity for the business while targeting 7% annual returns."`;
@@ -274,7 +298,7 @@
                     userText = "Show me the Florida property options";
                     botResp = `Here is a strong match for his "Vacation Home" goal:<br>
                     <div class="mt-2 border rounded overflow-hidden"><img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=400&h=150&fit=crop" class="w-full object-cover h-24"><div class="p-2 bg-white text-xs font-bold">Miami Coastal • $1.2M</div></div>
-                    <div class="mt-2 bg-green-100 text-green-800 p-2 rounded text-xs">HSBC Premier Mortgage Rate: <strong>4.25% (Exclusive)</strong></div>`;
+                    <div class="mt-2 bg-green-100 text-green-800 p-2 rounded text-xs">HSBC Premier Mortgage Rate: <span class="font-bold">4.25% (Exclusive)</span></div>`;
                 }
             } else if (currentClient === 'sarah') {
                 if(action === 'talking_points') {
@@ -286,10 +310,18 @@
                     </ul>`;
                 } else if (action === 'calc') {
                     userText = "Estimate Education Costs";
-                    botResp = `<strong>Projected Cost (Year 2030):</strong><br>
+                    botResp = `Projected Cost (Year 2030):<br>
                     4-Year Degree @ Harvard/Yale<br>
                     <span class="text-xl font-bold text-gray-800">$450,000 USD</span><br><br>
                     <em>Suggested Action: Start a $5k/month education savings plan immediately.</em>`;
+                }
+            } else if (currentClient === 'alice') {
+                if(action === 'mortgage') {
+                    userText = "Check pre-approval status for Alice's mortgage";
+                    botResp = `Alice's pre-approval for up to $600,000 is still valid (expires Jan 2026). The best rate currently is 5.1% fixed for 5 years.`;
+                } else if (action === 'etf') {
+                    userText = "Suggest new low-cost global ETF";
+                    botResp = `The Vanguard FTSE Global All Cap UCITS ETF (VWRA) is a suitable, low-cost (0.22% OCF) option to diversify her core holdings.`;
                 }
             }
 

@@ -2,25 +2,32 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>WealthOS | Customer Mobile Assistant</title>
+    <title>WealthOS | Customer Mobile Assistant (Copilot-Driven)</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Open Sans', sans-serif; }
-        .mobile-frame { width: 375px; height: 812px; border-radius: 40px; border: 8px solid #333; box-shadow: 0 0 0 1px #999, 0 0 30px rgba(0,0,0,0.2); }
         .brand-green { background-color: #10b981; }
         .text-brand-green { color: #10b981; }
         .screen { display: none; }
         .active-screen { display: flex; }
         .copilot-modal { transition: transform 0.3s ease-out; transform: translateY(100%); }
         .copilot-modal.active { transform: translateY(0); }
+        @keyframes slide-in {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-slide-in {
+            animation: slide-in 0.5s ease-out;
+        }
+        .chat-bubble-in { animation: slide-in 0.3s ease-out; }
     </style>
 </head>
-<body class="bg-gray-100 h-screen flex items-center justify-center">
+<body class="bg-gray-100 h-screen flex items-center justify-center p-0">
 
-    <div class="mobile-frame bg-white flex flex-col overflow-hidden relative">
+    <div class="max-w-md w-full h-full bg-white flex flex-col overflow-hidden relative shadow-2xl">
         <a href="index.html" class="absolute top-2 left-1/2 -translate-x-1/2 text-gray-500 hover:text-gray-800 text-xs z-50">Back to Roles</a>
 
         <div id="screen-login" class="screen active-screen flex flex-col items-center justify-center p-8 h-full bg-white">
@@ -53,97 +60,110 @@
             <div class="flex-1 overflow-y-auto p-4 bg-gray-50">
                 <div class="bg-white p-4 rounded-xl shadow-sm mb-4">
                     <h3 class="font-bold text-lg text-gray-800 mb-2">Quick Actions</h3>
-                    <div class="grid grid-cols-4 gap-3 text-center text-xs">
-                        <div class="p-2 bg-gray-50 rounded"><i class="fa-solid fa-arrow-right-arrow-left text-blue-500"></i><p>Transfer</p></div>
-                        <div class="p-2 bg-gray-50 rounded"><i class="fa-solid fa-credit-card text-red-500"></i><p>Pay Bills</p></div>
-                        <div class="p-2 bg-gray-50 rounded"><i class="fa-solid fa-bell text-yellow-500"></i><p>Alerts</p></div>
-                        <div class="p-2 bg-gray-50 rounded"><i class="fa-solid fa-calculator text-green-500"></i><p>Budget</p></div>
+                    <div class="grid grid-cols-4 gap-4 text-center text-sm">
+                        <button class="flex flex-col items-center text-gray-600 hover:text-brand-green"><i class="fa-solid fa-arrow-up-right-dots text-xl mb-1"></i> Transfer</button>
+                        <button class="flex flex-col items-center text-gray-600 hover:text-brand-green"><i class="fa-solid fa-wallet text-xl mb-1"></i> Pay Bills</button>
+                        <button class="flex flex-col items-center text-gray-600 hover:text-brand-green"><i class="fa-solid fa-qrcode text-xl mb-1"></i> Scan to Pay</button>
+                        <button onclick="toggleCopilot(true)" class="flex flex-col items-center text-brand-green hover:text-green-700 font-bold"><i class="fa-solid fa-sparkles text-xl mb-1"></i> Ask Copilot</button>
                     </div>
                 </div>
+
+                <div class="bg-blue-100 p-4 rounded-xl shadow-lg mb-6 border-l-4 border-blue-500 animate-slide-in">
+                    <h3 class="font-bold text-blue-800 flex items-center mb-1"><i class="fa-solid fa-money-bill-trend-up text-blue-500 mr-2 text-xl"></i> Copilot Alert</h3>
+                    <p class="text-sm text-blue-700">Your **Gold Price Alert** (Set: $2,100) was triggered at 11:45 AM. Review the impact on your hedging strategy.</p>
+                    <button onclick="sendActionFromChip('Review Gold Price Alert impact on hedging strategy')" class="mt-3 text-xs font-semibold brand-green border border-brand-green rounded-full px-3 py-1 hover:bg-green-50 transition flex items-center">
+                        <i class="fa-solid fa-magnifying-glass-arrow-right mr-1"></i> View Strategy Impact
+                    </button>
+                </div>
+                
                 <div class="bg-white p-4 rounded-xl shadow-sm">
                     <h3 class="font-bold text-lg text-gray-800 mb-2">Recent Transactions</h3>
-                    <div class="flex justify-between py-2 border-b text-sm"><span>Starbucks</span><span class="font-bold text-red-600">-$5.50</span></div>
-                    <div class="flex justify-between py-2 border-b text-sm"><span>Salary Deposit</span><span class="font-bold text-green-600">+$8,500.00</span></div>
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex justify-between"><span>Amazon</span><span class="font-bold text-red-600">-$45.00</span></li>
+                        <li class="flex justify-between"><span>Salary Deposit</span><span class="font-bold text-green-600">+$8,200.00</span></li>
+                        <li class="flex justify-between"><span>Investment Fund X</span><span class="font-bold text-red-600">-$500.00</span></li>
+                    </ul>
                 </div>
             </div>
 
-            <div class="flex-shrink-0 flex justify-around p-3 bg-white border-t">
-                <button onclick="showScreen('screen-dashboard')" class="text-gray-800 flex flex-col items-center text-xs font-semibold"><i class="fa-solid fa-house text-xl mb-1"></i>Home</button>
-                <button onclick="showScreen('screen-wealth')" class="text-brand-green flex flex-col items-center text-xs font-semibold"><i class="fa-solid fa-chart-line text-xl mb-1"></i>Wealth</button>
-                <button class="text-gray-400 flex flex-col items-center text-xs"><i class="fa-solid fa-credit-card text-xl mb-1"></i>Cards</button>
-                <button class="text-gray-400 flex flex-col items-center text-xs"><i class="fa-solid fa-user text-xl mb-1"></i>Profile</button>
+            <div class="flex-shrink-0 border-t border-gray-200 bg-white p-3">
+                <div class="flex justify-around">
+                    <button class="text-brand-green flex flex-col items-center text-xs font-semibold"><i class="fa-solid fa-house text-xl mb-1"></i>Home</button>
+                    <button onclick="showScreen('screen-wealth')" class="text-gray-400 flex flex-col items-center text-xs"><i class="fa-solid fa-chart-line text-xl mb-1"></i>Wealth</button>
+                    <button class="text-gray-400 flex flex-col items-center text-xs"><i class="fa-solid fa-credit-card text-xl mb-1"></i>Cards</button>
+                    <button class="text-gray-400 flex flex-col items-center text-xs"><i class="fa-solid fa-user text-xl mb-1"></i>Profile</button>
+                </div>
             </div>
         </div>
-
+        
         <div id="screen-wealth" class="screen flex-col h-full">
             <div class="flex-shrink-0 p-5 pt-10 bg-white border-b border-gray-100">
-                <h2 class="text-2xl font-bold text-gray-800">My Wealth</h2>
+                <div class="flex items-center justify-between">
+                    <h2 class="text-2xl font-bold text-gray-800">My Wealth</h2>
+                    <i class="fa-solid fa-rotate-right text-gray-400 hover:text-brand-green" onclick="showScreen('screen-dashboard')"></i>
+                </div>
                 <div class="flex items-center justify-between mt-2">
                     <p class="text-sm text-gray-500">Total Investable Assets</p>
                     <span class="text-green-600 font-bold text-sm">YTD: +8.1%</span>
                 </div>
                 <h3 class="text-4xl font-bold text-gray-900 mt-1">$4,500,000</h3>
-                <button onclick="toggleCopilot(true)" class="mt-4 w-full brand-green hover:bg-green-700 text-white font-bold py-3 rounded-xl shadow-lg transition flex items-center justify-center">
-                    <i class="fa-solid fa-robot mr-2"></i> Launch Wealth Assistant
+                <button onclick="toggleCopilot(true)" class="mt-4 w-full bg-green-50 hover:bg-green-100 text-brand-green font-bold py-3 rounded-lg transition">
+                    <i class="fa-solid fa-sparkles mr-2"></i> Ask Copilot
                 </button>
             </div>
-
+            
             <div class="flex-1 overflow-y-auto p-4 bg-gray-50">
-                <h3 class="text-lg font-bold text-gray-800 mb-3">Portfolio Overview</h3>
-                
-                <div class="bg-white p-4 rounded-xl shadow-sm mb-4">
-                    <div class="flex justify-between items-center text-sm mb-1"><span>Equities</span><span class="font-bold">40%</span></div>
-                    <div class="w-full bg-gray-200 rounded-full h-2"><div class="bg-blue-600 h-2 rounded-full" style="width: 40%"></div></div>
-                    <div class="flex justify-between items-center text-sm mt-3 mb-1"><span>Fixed Income</span><span class="font-bold">35%</span></div>
-                    <div class="w-full bg-gray-200 rounded-full h-2"><div class="bg-red-600 h-2 rounded-full" style="width: 35%"></div></div>
+                <div class="bg-red-100 p-4 rounded-xl shadow-sm mb-4 border-l-4 border-red-500">
+                    <h3 class="font-bold text-red-800 flex items-center mb-1"><i class="fa-solid fa-landmark text-red-500 mr-2"></i> Copilot: WM Contact Recommended</h3>
+                    <p class="text-sm text-red-700">Federal Reserve announced an unexpected interest rate hike. This affects your **$500k mortgage rate**.</p>
+                    <button onclick="sendActionToCopilot('Connect me with my Wealth Manager regarding the interest rate hike', true)" class="mt-2 text-xs font-semibold text-brand-green border border-brand-green rounded-full px-3 py-1 hover:bg-green-50 transition flex items-center">
+                        <i class="fa-solid fa-phone-volume mr-1"></i> Contact Wealth Manager Now
+                    </button>
                 </div>
 
                 <div class="bg-white p-4 rounded-xl shadow-sm">
-                    <h4 class="font-bold text-gray-700 mb-2">Holdings</h4>
-                    <div class="flex justify-between py-1 border-b text-sm"><span>Global Equity Fund</span><span class="font-bold text-green-600">+$25k</span></div>
-                    <div class="flex justify-between py-1 border-b text-sm"><span>Term Deposit #1240</span><span class="font-bold">$500k</span></div>
+                    <h3 class="font-bold text-lg text-gray-800 mb-2">My Portfolios</h3>
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex justify-between"><span>Retirement Fund</span><span class="font-bold text-gray-800">$2,500,000</span></li>
+                        <li class="flex justify-between"><span>Growth Portfolio</span><span class="font-bold text-gray-800">$1,800,000</span></li>
+                        <li class="flex justify-between"><span>Cash Reserves</span><span class="font-bold text-gray-800">$200,000</span></li>
+                    </ul>
                 </div>
             </div>
 
-            <div class="flex-shrink-0 flex justify-around p-3 bg-white border-t">
-                <button onclick="showScreen('screen-dashboard')" class="text-gray-400 flex flex-col items-center text-xs"><i class="fa-solid fa-house text-xl mb-1"></i>Home</button>
-                <button onclick="showScreen('screen-wealth')" class="text-brand-green flex flex-col items-center text-xs font-semibold"><i class="fa-solid fa-chart-line text-xl mb-1"></i>Wealth</button>
-                <button class="text-gray-400 flex flex-col items-center text-xs"><i class="fa-solid fa-credit-card text-xl mb-1"></i>Cards</button>
-                <button class="text-gray-400 flex flex-col items-center text-xs"><i class="fa-solid fa-user text-xl mb-1"></i>Profile</button>
+            <div class="flex-shrink-0 border-t border-gray-200 bg-white p-3">
+                <div class="flex justify-around">
+                    <button onclick="showScreen('screen-dashboard')" class="text-gray-400 flex flex-col items-center text-xs"><i class="fa-solid fa-house text-xl mb-1"></i>Home</button>
+                    <button class="text-brand-green flex flex-col items-center text-xs font-semibold"><i class="fa-solid fa-chart-line text-xl mb-1"></i>Wealth</button>
+                    <button class="text-gray-400 flex flex-col items-center text-xs"><i class="fa-solid fa-credit-card text-xl mb-1"></i>Cards</button>
+                    <button class="text-gray-400 flex flex-col items-center text-xs"><i class="fa-solid fa-user text-xl mb-1"></i>Profile</button>
+                </div>
             </div>
         </div>
 
-        <div id="copilot-modal" class="copilot-modal absolute inset-x-0 bottom-0 h-4/5 bg-white flex flex-col rounded-t-3xl shadow-2xl border-t-8 border-brand-green">
-            <div class="p-4 flex items-center justify-between flex-shrink-0 border-b">
-                <h3 class="font-bold text-lg text-gray-800">Wealth Assistant</h3>
-                <button onclick="toggleCopilot(false)" class="text-gray-500 hover:text-red-500"><i class="fa-solid fa-xmark text-xl"></i></button>
-            </div>
-            
-            <div class="flex-1 overflow-y-auto p-4 space-y-4">
-                <p class="text-xs text-gray-500 font-semibold mb-2">PROACTIVE ALERTS (ASSISTANT MODE)</p>
+        <div id="copilot-modal" class="absolute inset-0 bg-gray-900 bg-opacity-70 flex items-end copilot-modal">
+            <div class="bg-white w-full rounded-t-3xl p-6 shadow-2xl h-3/4 flex flex-col">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-xl font-bold text-brand-green flex items-center"><i class="fa-solid fa-sparkles mr-2"></i> Wealth Copilot</h2>
+                    <button onclick="toggleCopilot(false)" class="text-gray-500 hover:text-gray-800 text-xl"><i class="fa-solid fa-times"></i></button>
+                </div>
+                
+                <div id="copilot-chat-container" class="flex-1 overflow-y-auto space-y-4 mb-4">
+                    </div>
 
-                <div class="bg-yellow-50 p-3 rounded-xl border-l-4 border-yellow-500 shadow-sm">
-                    <p class="font-semibold text-gray-800 text-sm">Commodity Movement</p>
-                    <p class="text-xs text-gray-600 mt-1">The price of gold has increased by **+4.5%** in the last 7 days. This impacts your current 15% gold allocation.</p>
-                    <button class="mt-2 text-xs font-semibold text-brand-green border border-brand-green rounded-full px-3 py-1 hover:bg-green-50 transition" onclick="triggerWMContact('Gold', 'Jane Doe')">
-                        <i class="fa-solid fa-phone-volume mr-1"></i> Speak to Wealth Manager John
-                    </button>
+                <div class="flex-shrink-0 space-y-3">
+                    <h4 class="text-sm font-bold text-gray-700 flex items-center"><i class="fa-solid fa-hand-pointer mr-2 text-brand-green"></i> Recommended Actions:</h4>
+                    <div class="flex flex-wrap gap-2">
+                        <button onclick="sendActionFromChip('Update Budget Now')" class="px-4 py-2 text-sm rounded-full brand-green text-white hover:bg-green-700 shadow-md flex items-center"><i class="fa-solid fa-sliders mr-2"></i> Update Budget Now</button>
+                        <button onclick="sendActionFromChip('Forecast Travel Impact')" class="px-4 py-2 text-sm rounded-full border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 shadow-sm flex items-center"><i class="fa-solid fa-chart-line mr-2"></i> Forecast Travel Impact</button>
+                        <button onclick="sendActionFromChip('I Need Help')" class="px-4 py-2 text-sm rounded-full border border-red-300 bg-red-50 text-red-700 hover:bg-red-100 shadow-sm flex items-center"><i class="fa-solid fa-headset mr-2"></i> I Need Help</button>
+                    </div>
                 </div>
 
-                <div class="bg-red-50 p-3 rounded-xl border-l-4 border-red-500 shadow-sm">
-                    <p class="font-semibold text-gray-800 text-sm">Central Bank Action</p>
-                    <p class="text-xs text-gray-600 mt-1">The Central Bank just announced a **+50 BPS** interest rate hike. This affects your $500k mortgage rate.</p>
-                    <button class="mt-2 text-xs font-semibold text-brand-green border border-brand-green rounded-full px-3 py-1 hover:bg-green-50 transition" onclick="triggerWMContact('Rate Hike', 'Jane Doe')">
-                        <i class="fa-solid fa-phone-volume mr-1"></i> Speak to Wealth Manager John
-                    </button>
-                </div>
-            </div>
-
-            <div class="flex-shrink-0 p-4 bg-white border-t">
-                <div class="flex items-center space-x-3">
-                    <div class="w-10 h-10 brand-green rounded-full flex items-center justify-center text-white text-lg"><i class="fa-solid fa-robot"></i></div>
-                    <input type="text" placeholder="Ask your assistant (e.g. 'What is my YTD return?')" class="flex-1 border border-gray-300 rounded-full py-2 px-4 text-sm focus:outline-none" readonly>
-                    <button class="text-brand-green"><i class="fa-solid fa-paper-plane text-xl"></i></button>
+                <div class="relative flex items-center mt-3">
+                    <button class="text-gray-400 hover:text-brand-green mr-2 text-lg"><i class="fa-solid fa-microphone"></i></button>
+                    <input type="text" id="copilot-input" onkeypress="if(event.key === 'Enter') handleCopilotInput()" placeholder="Type a query or ask for a transaction..." class="flex-1 border border-gray-300 rounded-full pl-4 pr-10 py-2 text-sm focus:outline-none focus:border-brand-green shadow-sm">
+                    <button onclick="handleCopilotInput()" class="absolute right-3 top-2 text-brand-green hover:text-green-700"><i class="fa-solid fa-paper-plane"></i></button>
                 </div>
             </div>
         </div>
@@ -153,6 +173,15 @@
     <script>
         const screens = ['screen-login', 'screen-dashboard', 'screen-wealth'];
         
+        // Initial Copilot conversation data
+        const initialCopilotChat = `
+            <div class="flex gap-3 chat-bubble-in mb-4">
+                <div class="w-8 h-8 brand-green rounded-full flex-shrink-0 flex items-center justify-center text-white text-xs"><i class="fa-solid fa-robot"></i></div>
+                <div class="bg-gray-100 p-3 rounded-xl rounded-tl-none shadow-sm text-sm text-gray-700 w-full">
+                    Hello Jane. I'm your Wealth Copilot. I noticed you've spent 25% more on travel this month. **What action would you like to take?**
+                </div>
+            </div>`;
+
         function showScreen(screenId) {
             screens.forEach(id => {
                 const screen = document.getElementById(id);
@@ -170,16 +199,81 @@
 
         function toggleCopilot(show) {
             const modal = document.getElementById('copilot-modal');
+            const chat = document.getElementById('copilot-chat-container');
             if (show) {
+                // Reset chat content on open
+                chat.innerHTML = initialCopilotChat;
                 modal.classList.add('active');
+                chat.scrollTop = chat.scrollHeight;
             } else {
                 modal.classList.remove('active');
             }
         }
 
-        function triggerWMContact(topic, clientName) {
-            alert(`ACTION: Customer ${clientName} has been prompted to contact Wealth Manager John Anderson about the topic: ${topic}.\nA CRM/Task alert has been created for John.`);
+        function sendChatMessage(message, isUser = true) {
+            const chatContainer = document.getElementById('copilot-chat-container');
+            
+            if (isUser) {
+                // User message bubble
+                chatContainer.innerHTML += `<div class="flex gap-3 justify-end chat-bubble-in mb-4"><div class="bg-brand-green text-white p-3 rounded-xl rounded-tr-none shadow-sm text-sm">${message}</div></div>`;
+            } else {
+                // AI response bubble
+                chatContainer.innerHTML += `<div class="flex gap-3 chat-bubble-in mb-4"><div class="w-8 h-8 brand-green rounded-full flex-shrink-0 flex items-center justify-center text-white text-xs"><i class="fa-solid fa-robot"></i></div><div class="bg-gray-100 p-3 rounded-xl rounded-tl-none shadow-sm text-sm text-gray-700 w-full">${message}</div></div>`;
+            }
+
+            // Scroll to bottom
+            chatContainer.scrollTop = chatContainer.scrollHeight;
         }
+
+        function sendActionFromChip(action) {
+            sendChatMessage(action, true);
+            
+            let response = '';
+            if (action === 'Update Budget Now') {
+                response = 'Your travel budget has been temporarily adjusted for this month. I will monitor it and notify you of any further risks.';
+            } else if (action === 'Forecast Travel Impact') {
+                response = 'Your savings goal timeline will shift by 45 days due to the increase in travel spending. Would you like to review other discretionary spending?';
+            } else if (action === 'I Need Help') {
+                response = 'I have connected you with a human support agent. Please wait a moment.';
+            } else if (action.includes('Review Gold Price Alert')) {
+                response = 'The Gold Price Alert was triggered due to volatility. I recommend deploying 50% of your current cash reserves into a short-term bond fund to hedge against inflation risk.';
+            } else if (action.includes('Connect me with my Wealth Manager')) {
+                 response = 'I have notified John Anderson with the context of the interest rate hike. He will contact you directly within the hour.';
+            }
+            
+            setTimeout(() => {
+                sendChatMessage(response, false);
+            }, 500);
+        }
+
+        function handleCopilotInput() {
+            const input = document.getElementById('copilot-input');
+            if (input.value.trim() !== '') {
+                const message = input.value.trim();
+                sendChatMessage(message, true);
+                
+                // Simulate AI response based on generic text input
+                setTimeout(() => {
+                    sendChatMessage(`I've received your query: **${message}**. I am processing that request now and will respond shortly.`, false);
+                }, 500);
+                
+                input.value = '';
+            }
+        }
+
+        // The button on the dashboard alert (customer.html) and wealth alert now uses sendActionFromChip
+        function sendActionToCopilot(actionText, showModal = false) {
+            if (showModal) {
+                // The wealth manager button is in the wealth screen and should open the copilot modal
+                toggleCopilot(true);
+                // Wait for the modal to open before sending the message
+                setTimeout(() => sendActionFromChip(actionText), 400); 
+            } else {
+                // Dashboard action button doesn't open the chat modal, it simulates an action taken in the background
+                sendActionFromChip(actionText);
+            }
+        }
+
 
         // Initialize view
         showScreen('screen-login');
