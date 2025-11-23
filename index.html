@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WealthOS | Secure Login</title>
+    <title>WealthOS | Role-Based Demo Switcher</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
@@ -11,51 +11,74 @@
         body { font-family: 'Open Sans', sans-serif; }
         .brand-red { color: #db0011; }
         .bg-brand-red { background-color: #db0011; }
+        .text-brand-red { color: #db0011; }
+        .card-shadow { box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); }
     </style>
 </head>
-<body class="bg-gray-100 h-screen flex items-center justify-center">
+<body class="bg-gray-100 min-h-screen flex flex-col items-center justify-center p-8">
 
-    <div class="bg-white p-10 rounded-xl shadow-2xl w-96 border-t-4 border-brand-red">
-        
-        <div class="flex justify-center mb-8">
-            <div class="flex items-center">
-                <div class="w-10 h-10 bg-brand-red text-white flex items-center justify-center font-bold text-xl mr-3 rounded">
+    <div class="max-w-6xl mx-auto w-full">
+        <div class="text-center mb-12">
+            <div class="flex items-center justify-center mb-4">
+                <div class="w-12 h-12 bg-brand-red text-white flex items-center justify-center font-bold text-2xl mr-3 rounded-xl">
                     <i class="fa-solid fa-building-columns"></i>
                 </div>
-                <span class="font-bold text-2xl tracking-tight text-gray-800">WEALTH<span class="text-red-600">OS</span></span>
+                <span class="font-bold text-4xl tracking-tight text-gray-800">WEALTH<span class="text-red-600">OS</span> Demo Suite</span>
             </div>
+            <p class="text-xl text-gray-500 mt-2">Select a persona to experience the AI-powered digital wealth platform.</p>
         </div>
 
-        <div class="space-y-6">
-            <div>
-                <label class="block text-sm font-bold text-gray-700 mb-1">Staff ID</label>
-                <div class="relative">
-                    <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400">
-                        <i class="fa-solid fa-id-badge"></i>
-                    </span>
-                    <input type="text" value="44021-JA" class="w-full border border-gray-300 pl-10 py-3 rounded focus:outline-none focus:border-brand-red text-gray-600" readonly>
-                </div>
-            </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
 
-            <div>
-                <label class="block text-sm font-bold text-gray-700 mb-1">Password</label>
-                <div class="relative">
-                    <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400">
-                        <i class="fa-solid fa-lock"></i>
-                    </span>
-                    <input type="password" value="password123" class="w-full border border-gray-300 pl-10 py-3 rounded focus:outline-none focus:border-brand-red text-gray-600">
+            <a href="crm.html" class="block bg-white p-6 rounded-xl border-t-4 border-red-600 shadow-xl hover:shadow-2xl transition duration-300 card-shadow">
+                <div class="text-center mb-4">
+                    <i class="fa-solid fa-user-tie text-red-600 text-3xl"></i>
+                    <h3 class="text-2xl font-bold text-gray-900 mt-2">Wealth Manager</h3>
+                    <p class="text-sm text-gray-500">John Anderson</p>
                 </div>
-            </div>
-
-            <a href="crm.html" class="block w-full bg-brand-red hover:bg-red-700 text-white font-bold py-3 px-4 rounded transition text-center shadow-lg">
-                Secure Sign In <i class="fa-solid fa-arrow-right ml-2"></i>
+                <div class="space-y-3 text-sm">
+                    <p class="flex items-center text-gray-700"><i class="fa-solid fa-magnifying-glass w-5 text-green-500 mr-2"></i> CRM Discovery: Identify next best action clients.</p>
+                    <p class="flex items-center text-gray-700"><i class="fa-solid fa-user-check w-5 text-green-500 mr-2"></i> Financial Planning: Analyze risk, goals, and suggest products.</p>
+                    <p class="flex items-center text-gray-700"><i class="fa-solid fa-chart-pie w-5 text-green-500 mr-2"></i> Performance Review: Track personal and team sales targets.</p>
+                </div>
+                <button class="mt-6 w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 rounded transition">
+                    Access Manager Platform <i class="fa-solid fa-arrow-right ml-2"></i>
+                </button>
             </a>
-        </div>
 
-        <div class="mt-6 text-center">
-            <p class="text-xs text-gray-400">Authorized Access Only. <br>System Version 2.4.0</p>
+            <a href="investment.html" class="block bg-white p-6 rounded-xl border-t-4 border-blue-600 shadow-xl hover:shadow-2xl transition duration-300 card-shadow">
+                <div class="text-center mb-4">
+                    <i class="fa-solid fa-chart-line text-blue-600 text-3xl"></i>
+                    <h3 class="text-2xl font-bold text-gray-900 mt-2">Investment Officer</h3>
+                    <p class="text-sm text-gray-500">Alex Chen</p>
+                </div>
+                <div class="space-y-3 text-sm">
+                    <p class="flex items-center text-gray-700"><i class="fa-solid fa-newspaper w-5 text-green-500 mr-2"></i> Market Copilot: Summarize financial news and research reports.</p>
+                    <p class="flex items-center text-gray-700"><i class="fa-solid fa-link w-5 text-green-500 mr-2"></i> Product Sourcing: Evaluate and recommend investment products.</p>
+                    <p class="flex items-center text-gray-700"><i class="fa-solid fa-calendar-check w-5 text-green-500 mr-2"></i> Smart Scheduling: Arrange meetings with fund and central bank officers.</p>
+                </div>
+                <button class="mt-6 w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded transition">
+                    Access Officer Portal <i class="fa-solid fa-arrow-right ml-2"></i>
+                </button>
+            </a>
+
+            <a href="customer.html" class="block bg-white p-6 rounded-xl border-t-4 border-green-600 shadow-xl hover:shadow-2xl transition duration-300 card-shadow">
+                <div class="text-center mb-4">
+                    <i class="fa-solid fa-mobile-screen-button text-green-600 text-3xl"></i>
+                    <h3 class="text-2xl font-bold text-gray-900 mt-2">Customer</h3>
+                    <p class="text-sm text-gray-500">Jane Doe (Mobile View)</p>
+                </div>
+                <div class="space-y-3 text-sm">
+                    <p class="flex items-center text-gray-700"><i class="fa-solid fa-bell w-5 text-green-500 mr-2"></i> Proactive Alerts: Receive timely reminders (rate changes, gold prices).</p>
+                    <p class="flex items-center text-gray-700"><i class="fa-solid fa-graduation-cap w-5 text-green-500 mr-2"></i> Assistant, not Advisor: Copilot flags events that impact wealth.</p>
+                    <p class="flex items-center text-gray-700"><i class="fa-solid fa-phone-volume w-5 text-green-500 mr-2"></i> WM Trigger: Alerts recommend contacting the Wealth Manager.</p>
+                </div>
+                <button class="mt-6 w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 rounded transition">
+                    Access Customer Mobile <i class="fa-solid fa-arrow-right ml-2"></i>
+                </button>
+            </a>
+
         </div>
     </div>
-
 </body>
 </html>

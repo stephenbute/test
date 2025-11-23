@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WealthOS | Investment Officer Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Open Sans', sans-serif; }
+        .brand-blue { background-color: #2563eb; }
+        .text-brand-blue { color: #2563eb; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e0; border-radius: 3px; }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800 h-screen flex overflow-hidden">
+
+    <aside class="w-64 bg-white border-r border-gray-200 flex flex-col flex-shrink-0 z-20">
+        <div class="h-16 flex items-center px-6 border-b border-gray-200">
+            <div class="w-8 h-8 bg-blue-600 text-white flex items-center justify-center font-bold text-lg mr-3"><i class="fa-solid fa-chart-line"></i></div>
+            <span class="font-bold text-xl tracking-tight text-gray-800">INVESTMENT<span class="text-blue-600">OS</span></span>
+        </div>
+        <nav class="flex-1 py-6 space-y-1">
+            <a href="index.html" class="block px-6 py-4 text-gray-600 hover:bg-gray-50 border-l-4 border-transparent flex items-center gap-3">
+                <i class="fa-solid fa-house"></i> Role Switcher
+            </a>
+            <a href="#" class="block px-6 py-4 bg-blue-50 text-blue-700 border-l-4 border-blue-600 flex items-center gap-3">
+                <i class="fa-solid fa-chart-area"></i> Market Research
+            </a>
+            <a href="#" class="block px-6 py-4 text-gray-600 hover:bg-gray-50 border-l-4 border-transparent flex items-center gap-3">
+                <i class="fa-solid fa-cubes-stacked"></i> Product Vetting
+            </a>
+        </nav>
+        <div class="p-6 border-t border-gray-200 bg-gray-50">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-gray-300 border-2 border-white overflow-hidden"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Alex"></div>
+                <div><p class="text-sm font-bold">Alex Chen</p><p class="text-xs text-gray-500">Investment Officer</p></div>
+            </div>
+        </div>
+    </aside>
+
+    <main class="flex-1 flex flex-col min-w-0 bg-slate-100">
+        <header class="bg-white border-b border-gray-200 h-16 flex items-center justify-between px-8 shadow-sm">
+            <h2 class="text-xl font-bold text-gray-800">Global Market Intelligence</h2>
+            <div class="text-sm text-gray-500"><i class="fa-regular fa-calendar mr-2"></i> Nov 23, 2025</div>
+        </header>
+
+        <div class="flex-1 overflow-y-auto p-8 relative">
+            <div class="max-w-5xl mx-auto space-y-6">
+
+                <div class="grid grid-cols-2 gap-6">
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                        <h3 class="font-bold text-lg text-gray-700 mb-4"><i class="fa-solid fa-newspaper text-blue-500 mr-2"></i> Top Research Highlights</h3>
+                        <ul class="space-y-3 text-sm">
+                            <li class="border-b pb-2"><span class="font-semibold">Fed Watch:</span> Consensus for Jan rate hike drops to 20% after strong jobs report.</li>
+                            <li class="border-b pb-2"><span class="font-semibold">Sector Focus:</span> AI infrastructure spending projected to double by Q2 2026. <span class="text-blue-600 font-bold ml-1">-> Deep Dive</span></li>
+                            <li><span class="font-semibold">Commodity Alert:</span> Gold futures see highest volatility since April.</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                        <h3 class="font-bold text-lg text-gray-700 mb-4"><i class="fa-solid fa-calendar-check text-blue-500 mr-2"></i> Critical Meetings</h3>
+                        <div class="space-y-3 text-sm">
+                            <div class="p-2 border rounded bg-blue-50"><span class="font-semibold">Tues 10:00 AM:</span> **BlackRock Fund Manager** Briefing (Liquidity Flows)</div>
+                            <div class="p-2 border rounded"><span class="font-semibold">Wed 2:00 PM:</span> **Central Bank Officer** - Private Discussion on APAC Yields</div>
+                            <div class="p-2 border rounded"><span class="font-semibold">Fri 9:00 AM:</span> **Product Committee** - ESG Fund Vetting</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="h-64 w-full border-2 border-dashed border-gray-300 rounded-xl flex items-center justify-center text-gray-400 bg-gray-50 mt-6">
+                    <p class="text-lg">Product Vetting Dashboard (Placeholder for AI-driven risk scoring and recommendation engine)</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <aside class="w-96 bg-white border-l border-gray-200 flex flex-col shadow-xl z-30">
+        <div class="h-16 bg-gradient-to-r from-gray-900 to-gray-800 text-white flex items-center px-4 justify-between shadow-md">
+            <span class="font-semibold tracking-wide text-sm"><div class="inline-block w-2 h-2 bg-green-400 rounded-full animate-pulse mr-2"></div>Research Copilot</span>
+            <i class="fa-solid fa-robot text-gray-400"></i>
+        </div>
+        
+        <div id="chat-container-io" class="flex-1 overflow-y-auto p-4 space-y-4 bg-slate-50">
+            <div class="bg-white p-3 rounded-lg shadow-sm border border-gray-200 text-sm text-gray-700">
+                Good morning, Alex. What market data or fund research are you focused on today?
+            </div>
+        </div>
+
+        <div class="p-4 bg-white border-t border-gray-200">
+            <div class="flex gap-2 overflow-x-auto mb-3 pb-1">
+                <button onclick="copilotActionIO('summary')" class="whitespace-nowrap px-3 py-1 bg-white border border-gray-300 rounded-full text-xs text-gray-600 hover:text-brand-blue">Summarize 5 ESG Reports</button>
+                <button onclick="copilotActionIO('meeting')" class="whitespace-nowrap px-3 py-1 bg-white border border-gray-300 rounded-full text-xs text-gray-600 hover:text-brand-blue">Schedule Fund Manager Call</button>
+            </div>
+            <div class="relative">
+                <input type="text" placeholder="Type a research query..." class="w-full border border-gray-300 rounded-lg pl-4 pr-10 py-3 text-sm focus:outline-none focus:border-blue-600 shadow-sm">
+                <button class="absolute right-3 top-3 text-gray-400 hover:text-blue-600"><i class="fa-solid fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </aside>
+
+    <script>
+        function copilotActionIO(action) {
+            const chat = document.getElementById('chat-container-io');
+            let userText = "";
+            let botResp = "";
+
+            if(action === 'summary') {
+                userText = "Summarize the key findings from the 5 latest ESG fund reports.";
+                botResp = `**Top 3 Findings:**<br>1. **Renewables Overperform:** Funds with >30% solar/wind exposure beat MSCI World by 1.5% YTD.<br>2. **Carbon Risk:** 2 reports flag excessive carbon exposure in 4 currently-approved funds.<br>3. **Regional Focus:** European ESG funds show higher regulation compliance scores.`;
+            } else if (action === 'meeting') {
+                userText = "Schedule a meeting with the APAC Central Bank Officer next week.";
+                botResp = `Confirmed: I have checked all availability and placed a 30-minute meeting with the APAC officer for **Tuesday 11:30 AM** in your calendar.`;
+            }
+
+            chat.innerHTML += `<div class="flex gap-3 justify-end mb-4"><div class="bg-blue-600 text-white p-3 rounded-lg rounded-tr-none shadow-sm text-sm">${userText}</div></div>`;
+            chat.scrollTop = chat.scrollHeight;
+
+            setTimeout(() => {
+                chat.innerHTML += `<div class="flex gap-3 mb-4"><div class="w-8 h-8 bg-gray-900 rounded-full flex-shrink-0 flex items-center justify-center text-white text-xs"><i class="fa-solid fa-robot"></i></div><div class="bg-white p-3 rounded-lg rounded-tl-none shadow-sm border border-gray-200 text-sm text-gray-700 w-full">${botResp}</div></div>`;
+                chat.scrollTop = chat.scrollHeight;
+            }, 600);
+        }
+    </script>
+</body>
+</html>
