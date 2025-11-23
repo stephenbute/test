@@ -1,2 +1,2 @@
-test with git
+demo the idea
 ====
