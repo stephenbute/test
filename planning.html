@@ -17,6 +17,7 @@
         ::-webkit-scrollbar-thumb { background: #cbd5e0; border-radius: 3px; }
         .chat-bubble-in { animation: slideIn 0.3s ease-out; }
         @keyframes slideIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .blur-sm-text { color: transparent; text-shadow: 0 0 5px rgba(0,0,0,0.5); }
     </style>
 </head>
 <body class="bg-gray-100 text-gray-800 h-screen flex overflow-hidden">
@@ -47,59 +48,60 @@
 
     <main class="flex-1 flex flex-col min-w-0 bg-slate-100">
         <header class="bg-white border-b border-gray-200 h-16 flex-shrink-0 flex items-center justify-between px-8 shadow-sm z-10">
-            <h2 class="text-xl font-bold text-gray-800">Financial Planning: Robert Chen</h2>
-            <div class="text-sm text-gray-500"><i class="fa-regular fa-calendar mr-2"></i> Nov 22, 2025</div>
+            <h2 class="text-xl font-bold text-gray-800" id="header-title">Financial Planning: Robert Chen</h2>
+            
+            <div class="flex items-center gap-3">
+                <span class="text-xs font-bold text-gray-400 uppercase">Demo View:</span>
+                <select id="client-selector" onchange="switchClient(this.value)" class="border border-gray-300 rounded text-sm p-1 focus:border-brand-red outline-none">
+                    <option value="robert">Robert Chen (Business/Cash)</option>
+                    <option value="sarah">Sarah Jenkins (New/Insurance)</option>
+                </select>
+                <div class="text-sm text-gray-500 ml-4"><i class="fa-regular fa-calendar mr-2"></i> Nov 23, 2025</div>
+            </div>
         </header>
 
         <div class="flex-1 overflow-y-auto p-8">
             <div class="max-w-5xl mx-auto space-y-6">
+                
                 <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-200 flex items-start gap-6">
-                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Robert" class="w-24 h-24 rounded-lg bg-gray-100">
+                    <img id="p-img" src="https://api.dicebear.com/7.x/avataaars/svg?seed=Robert" class="w-24 h-24 rounded-lg bg-gray-100">
                     <div class="flex-1">
                         <div class="flex justify-between items-start">
                             <div>
-                                <h2 class="text-2xl font-bold text-gray-900">Robert Chen</h2>
-                                <p class="text-gray-500 text-sm mt-1">Premier Elite Customer <span class="mx-2 text-gray-300">|</span> Client since 2014</p>
+                                <h2 class="text-2xl font-bold text-gray-900" id="p-name">Robert Chen</h2>
+                                <p class="text-gray-500 text-sm mt-1" id="p-status">Premier Elite Customer <span class="mx-2 text-gray-300">|</span> Client since 2014</p>
                             </div>
                             <div class="text-right">
-                                <p class="text-xs text-gray-400 font-bold uppercase mb-1">Risk Appetite</p>
-                                <span class="bg-gray-900 text-white px-3 py-1.5 rounded text-sm font-semibold tracking-wide whitespace-nowrap">Aggressive</span>
+                                <p class="text-xs text-gray-400 font-bold uppercase mb-1">Risk Profile</p>
+                                <span id="p-risk" class="bg-gray-900 text-white px-3 py-1.5 rounded text-sm font-semibold tracking-wide whitespace-nowrap">Aggressive</span>
                             </div>
                         </div>
                         <div class="grid grid-cols-4 gap-4 mt-6 pt-4 border-t border-gray-100">
-                            <div><p class="text-xs text-gray-400 uppercase font-semibold">Age / Family</p><p class="font-medium text-gray-800">52 / Married, 1 Child (16yo)</p></div>
-                            <div><p class="text-xs text-gray-400 uppercase font-semibold">Occupation</p><p class="font-medium text-gray-800">Business Owner (Tech)</p></div>
-                            <div><p class="text-xs text-gray-400 uppercase font-semibold">Total AUM</p><p class="font-medium text-gray-800">$5,250,000</p></div>
-                            <div><p class="text-xs text-gray-400 uppercase font-semibold">Last Interaction</p><p class="font-medium text-gray-800">2 weeks ago (Phone)</p></div>
+                            <div><p class="text-xs text-gray-400 uppercase font-semibold">Age / Family</p><p class="font-medium text-gray-800" id="p-demographics">52 / Married, 1 Child (16yo)</p></div>
+                            <div><p class="text-xs text-gray-400 uppercase font-semibold">Occupation</p><p class="font-medium text-gray-800" id="p-job">Business Owner (Tech)</p></div>
+                            <div><p class="text-xs text-gray-400 uppercase font-semibold">Total AUM</p><p class="font-medium text-gray-800" id="p-aum">$5,250,000</p></div>
+                            <div><p class="text-xs text-gray-400 uppercase font-semibold">Timeline</p><p class="font-medium text-gray-800" id="p-timeline">8 Yrs to Retirement</p></div>
                         </div>
                     </div>
                 </div>
 
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    
                     <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
                         <h3 class="font-bold text-lg mb-4 border-b pb-2">Financial Goals</h3>
-                        <div class="space-y-3">
-                            <div class="flex items-center p-3 bg-red-50 border-l-4 border-red-600 rounded-r">
-                                <div class="flex-1"><p class="font-bold text-gray-800">1. Early Retirement</p><p class="text-xs text-gray-500">Target: Age 60 • Need: $8M</p></div>
-                                <span class="text-xs font-bold text-red-600 bg-white px-2 py-1 rounded border border-red-100">HIGH PRIORITY</span>
+                        <div class="space-y-3" id="goals-container">
                             </div>
-                            <div class="flex items-center p-3 bg-gray-50 border-l-4 border-orange-400 rounded-r">
-                                <div class="flex-1"><p class="font-bold text-gray-800">2. Vacation Home (Florida)</p><p class="text-xs text-gray-500">Timeline: 2 Years • Est: $1.2M</p></div>
-                                <span class="text-xs font-bold text-orange-600 bg-white px-2 py-1 rounded border border-orange-100">MEDIUM</span>
-                            </div>
-                        </div>
                     </div>
+
                     <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
-                        <h3 class="font-bold text-lg mb-4 border-b pb-2">Persona Interest Stats</h3>
-                        <div class="space-y-5">
-                            <div><div class="flex justify-between text-sm mb-1"><span class="font-semibold">Private Equity</span><span class="font-bold">85% Match</span></div><div class="w-full bg-gray-200 rounded-full h-2"><div class="bg-brand-red h-2 rounded-full" style="width: 85%"></div></div></div>
-                            <div><div class="flex justify-between text-sm mb-1"><span class="font-semibold">Real Estate</span><span class="font-bold">78% Match</span></div><div class="w-full bg-gray-200 rounded-full h-2"><div class="bg-brand-red h-2 rounded-full opacity-80" style="width: 78%"></div></div></div>
-                        </div>
+                        <h3 class="font-bold text-lg mb-4 border-b pb-2" id="stats-title">Asset Allocation</h3>
+                        <div class="space-y-5" id="stats-container">
+                            </div>
                     </div>
                 </div>
-                <div class="h-64 w-full border-2 border-dashed border-gray-300 rounded-xl flex items-center justify-center text-gray-400">
-                    Additional Holdings Data (Scroll Down Enabled)
-                </div>
+
+                <div id="holdings-panel" class="h-64 w-full border-2 border-dashed border-gray-300 rounded-xl flex items-center justify-center text-gray-400 bg-gray-50">
+                    </div>
             </div>
         </div>
     </main>
@@ -109,19 +111,13 @@
             <span class="font-semibold tracking-wide text-sm"><div class="inline-block w-2 h-2 bg-green-400 rounded-full animate-pulse mr-2"></div>Wealth Copilot</span>
             <i class="fa-solid fa-robot text-gray-400"></i>
         </div>
+        
         <div id="chat-container" class="flex-1 overflow-y-auto p-4 space-y-4 bg-slate-50">
-            <div class="flex gap-3 chat-bubble-in">
-                <div class="w-8 h-8 bg-gray-900 rounded-full flex-shrink-0 flex items-center justify-center text-white text-xs"><i class="fa-solid fa-robot"></i></div>
-                <div class="bg-white p-3 rounded-lg rounded-tl-none shadow-sm border border-gray-200 text-sm text-gray-700">
-                    I've analyzed Robert's profile. <strong>Strategy Alert:</strong> High Cash Drag detected. I can help you find products to discuss.
-                </div>
             </div>
-        </div>
+
         <div class="p-4 bg-white border-t border-gray-200 flex-shrink-0">
-            <div class="flex gap-2 overflow-x-auto mb-3 pb-1">
-                <button onclick="chatAction('Suggest Discussion Topic')" class="whitespace-nowrap px-3 py-1 bg-white border border-gray-300 rounded-full text-xs text-gray-600 hover:text-brand-red hover:border-brand-red">Suggest Topic</button>
-                <button onclick="chatAction('Show Vacation Properties')" class="whitespace-nowrap px-3 py-1 bg-white border border-gray-300 rounded-full text-xs text-gray-600 hover:text-brand-red hover:border-brand-red">Market News (Property)</button>
-            </div>
+            <div class="flex gap-2 overflow-x-auto mb-3 pb-1" id="suggestion-chips">
+                </div>
             <div class="relative">
                 <input type="text" id="copilot-input" placeholder="Type a command..." class="w-full border border-gray-300 rounded-lg pl-4 pr-10 py-3 text-sm focus:outline-none focus:border-brand-red shadow-sm" onkeypress="if(event.key === 'Enter') handleChat()">
                 <button onclick="handleChat()" class="absolute right-3 top-3 text-gray-400 hover:text-brand-red"><i class="fa-solid fa-paper-plane"></i></button>
@@ -130,37 +126,196 @@
     </aside>
 
     <script>
-        const chat = document.getElementById('chat-container');
-        function chatAction(msg) { 
-            document.getElementById('copilot-input').value = msg;
-            handleChat(); 
-        }
-        function handleChat() {
-            const input = document.getElementById('copilot-input');
-            const txt = input.value;
-            if(!txt) return;
+        // CLIENT DATA OBJECTS
+        const clients = {
+            robert: {
+                name: "Robert Chen",
+                img: "https://api.dicebear.com/7.x/avataaars/svg?seed=Robert",
+                status: "Premier Elite Customer | Client since 2014",
+                risk: "Aggressive",
+                demo: "52 / Married, 1 Child (16yo)",
+                job: "Business Owner (Tech)",
+                aum: "$5,250,000",
+                timeline: "8 Yrs to Retirement",
+                goals: [
+                    { title: "Early Retirement", desc: "Target: Age 60 • Need: $8M", priority: "HIGH PRIORITY", color: "red" },
+                    { title: "Vacation Home (Florida)", desc: "Timeline: 2 Years • Est: $1.2M", priority: "MEDIUM", color: "orange" }
+                ],
+                stats: [
+                    { label: "Cash & Equivalents", value: "60%", color: "bg-red-600", note: "High Liquidity for Business" },
+                    { label: "Equities", value: "30%", color: "bg-gray-600", note: "Underweight" },
+                    { label: "Fixed Income", value: "10%", color: "bg-gray-400", note: "Stable" }
+                ],
+                holdingsMsg: "<div class='text-center'><p>Current Strategy: <strong class='text-gray-700'>Short-term Liquidity Focus</strong></p><p class='text-xs'>Client holds $3.1M in Money Market Funds</p></div>",
+                copilotInit: "I've analyzed Robert's portfolio. <br><strong>Alert:</strong> He is holding 60% in Cash ($3.1M). As he plans to retire in 8 years, this cash drag will miss his $8M target.",
+                chips: [
+                    { label: "Suggest Growth Funds", action: "funds" },
+                    { label: "Show Florida Property", action: "property" }
+                ]
+            },
+            sarah: {
+                name: "Sarah Jenkins",
+                img: "https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah",
+                status: "New Client | Onboarding Phase",
+                risk: "Moderate (Est)",
+                demo: "48 / Divorced, 1 Child (14yo)",
+                job: "Director @ Google",
+                aum: "$1,150,000 (Cash)",
+                timeline: "Unknown",
+                goals: [
+                    { title: "Son's Education (Overseas)", desc: "Target: Age 18 • Loc: UK/US", priority: "DISCOVERY", color: "blue" },
+                    { title: "Wealth Protection", desc: "Insurance Needs Analysis", priority: "PENDING", color: "gray" }
+                ],
+                stats: [
+                    { label: "External Assets", value: "Unknown", color: "bg-gray-300", note: "Pending Open Banking Link" },
+                    { label: "Insurance Coverage", value: "Unknown", color: "bg-gray-300", note: "Policy Review Needed" }
+                ],
+                holdingsMsg: "<div class='text-center text-gray-400'><i class='fa-solid fa-lock mb-2'></i><p>Investment Holdings Data Pending</p><p class='text-xs'>Client has not yet authorized portfolio transfer.</p></div>",
+                copilotInit: "Welcome Sarah (New Client). <br><strong>Gap Analysis:</strong> We have limited data. She mentioned 'Overseas Education' for her son but we lack funding specifics.",
+                chips: [
+                    { label: "Talking Points (Discovery)", action: "talking_points" },
+                    { label: "Education Cost Calculator", action: "calc" }
+                ]
+            }
+        };
+
+        let currentClient = 'robert';
+
+        // Helper function to get URL parameter
+        function getUrlParameter(name) {
+            name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+            var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+            var results = regex.exec(location.search);
+            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+        };
+
+        // INIT: Check URL parameter on load
+        window.onload = () => {
+            const urlClient = getUrlParameter('client');
+            const initialClient = clients[urlClient] ? urlClient : 'robert';
+            document.getElementById('client-selector').value = initialClient; // Set selector state
+            switchClient(initialClient);
+        };
+
+        function switchClient(clientId) {
+            currentClient = clientId;
+            const data = clients[clientId];
+
+            // Update Header & Profile
+            document.getElementById('header-title').innerText = `Financial Planning: ${data.name}`;
+            document.getElementById('p-name').innerText = data.name;
+            document.getElementById('p-img').src = data.img;
+            document.getElementById('p-status').innerText = data.status;
+            document.getElementById('p-risk').innerText = data.risk;
+            document.getElementById('p-demographics').innerText = data.demo;
+            document.getElementById('p-job').innerText = data.job;
+            document.getElementById('p-aum').innerText = data.aum;
+            document.getElementById('p-timeline').innerText = data.timeline;
+
+            // Update Goals
+            const goalsContainer = document.getElementById('goals-container');
+            goalsContainer.innerHTML = '';
+            data.goals.forEach(g => {
+                goalsContainer.innerHTML += `
+                    <div class="flex items-center p-3 bg-${g.color}-50 border-l-4 border-${g.color}-500 rounded-r">
+                        <div class="flex-1"><p class="font-bold text-gray-800">${g.title}</p><p class="text-xs text-gray-500">${g.desc}</p></div>
+                        <span class="text-xs font-bold text-${g.color}-700 bg-white px-2 py-1 rounded border border-${g.color}-100">${g.priority}</span>
+                    </div>`;
+            });
+
+            // Update Stats
+            const statsContainer = document.getElementById('stats-container');
+            statsContainer.innerHTML = '';
+            data.stats.forEach(s => {
+                let width = s.value.includes('%') ? s.value : '10%'; // specific width for numbers, default for unknown
+                statsContainer.innerHTML += `
+                    <div>
+                        <div class="flex justify-between text-sm mb-1"><span class="font-semibold">${s.label}</span><span class="font-bold">${s.value}</span></div>
+                        <div class="w-full bg-gray-200 rounded-full h-2"><div class="${s.color} h-2 rounded-full" style="width: ${width}"></div></div>
+                        <p class="text-xs text-gray-400 mt-1 text-right">${s.note}</p>
+                    </div>`;
+            });
+
+            // Update Holdings Panel
+            document.getElementById('holdings-panel').innerHTML = data.holdingsMsg;
+
+            // Reset Chat
+            const chat = document.getElementById('chat-container');
+            chat.innerHTML = `
+                <div class="flex gap-3 chat-bubble-in">
+                    <div class="w-8 h-8 bg-gray-900 rounded-full flex-shrink-0 flex items-center justify-center text-white text-xs"><i class="fa-solid fa-robot"></i></div>
+                    <div class="bg-white p-3 rounded-lg rounded-tl-none shadow-sm border border-gray-200 text-sm text-gray-700">
+                        ${data.copilotInit}
+                    </div>
+                </div>`;
             
-            // User Msg
-            chat.innerHTML += `<div class="flex gap-3 justify-end chat-bubble-in mb-4"><div class="bg-brand-red text-white p-3 rounded-lg rounded-tr-none shadow-sm text-sm">${txt}</div></div>`;
-            input.value = '';
+            // Update Chips
+            const chipsContainer = document.getElementById('suggestion-chips');
+            chipsContainer.innerHTML = '';
+            data.chips.forEach(c => {
+                chipsContainer.innerHTML += `<button onclick="chatAction('${c.action}')" class="whitespace-nowrap px-3 py-1 bg-white border border-gray-300 rounded-full text-xs text-gray-600 hover:text-brand-red hover:border-brand-red transition">${c.label}</button>`;
+            });
+        }
+
+        function chatAction(action) {
+            const chat = document.getElementById('chat-container');
+            let userText = "";
+            let botResp = "";
+
+            if(currentClient === 'robert') {
+                if(action === 'funds') {
+                    userText = "Suggest funds to reduce cash drag";
+                    botResp = `To meet the $8M retirement goal, Robert needs equity exposure. <br><br>
+                    <strong>Recommendation:</strong><br>
+                    1. <em>Schroder Asian Growth Fund</em> (4-Star)<br>
+                    2. <em>BlackRock Global Allocation</em><br><br>
+                    "Robert, these allow you to keep liquidity for the business while targeting 7% annual returns."`;
+                } else if (action === 'property') {
+                    userText = "Show me the Florida property options";
+                    botResp = `Here is a strong match for his "Vacation Home" goal:<br>
+                    <div class="mt-2 border rounded overflow-hidden"><img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=400&h=150&fit=crop" class="w-full object-cover h-24"><div class="p-2 bg-white text-xs font-bold">Miami Coastal • $1.2M</div></div>
+                    <div class="mt-2 bg-green-100 text-green-800 p-2 rounded text-xs">HSBC Premier Mortgage Rate: <strong>4.25% (Exclusive)</strong></div>`;
+                }
+            } else if (currentClient === 'sarah') {
+                if(action === 'talking_points') {
+                    userText = "Give me discovery questions for Sarah";
+                    botResp = `Since we don't know her risk appetite yet, try these soft openers:<br><br>
+                    <ul class="list-disc pl-4 space-y-1">
+                        <li>"Sarah, for your son's education, are you looking at US Ivy Leagues or UK Russell Group? Tuitions vary significantly."</li>
+                        <li>"Do you currently have a Life Insurance policy that covers tuition fees in case of emergency?"</li>
+                    </ul>`;
+                } else if (action === 'calc') {
+                    userText = "Estimate Education Costs";
+                    botResp = `<strong>Projected Cost (Year 2030):</strong><br>
+                    4-Year Degree @ Harvard/Yale<br>
+                    <span class="text-xl font-bold text-gray-800">$450,000 USD</span><br><br>
+                    <em>Suggested Action: Start a $5k/month education savings plan immediately.</em>`;
+                }
+            }
+
+            // Append User Msg
+            chat.innerHTML += `<div class="flex gap-3 justify-end chat-bubble-in mb-4"><div class="bg-brand-red text-white p-3 rounded-lg rounded-tr-none shadow-sm text-sm">${userText}</div></div>`;
             chat.scrollTop = chat.scrollHeight;
 
-            // Bot Logic
+            // Append Bot Msg
             setTimeout(() => {
-                let botHtml = '';
-                if(txt.includes('Topic')) {
-                    botHtml = `Based on his daughter's age (16), I suggest discussing <strong>University Trusts</strong>. <br><br><em>"Robert, have you structured the funds for Yale efficiently?"</em>`;
-                } else if(txt.includes('Property') || txt.includes('Vacation')) {
-                    botHtml = `I see interest in Real Estate. <br>
-                    <div class="mt-2 border rounded overflow-hidden"><img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=400&h=150&fit=crop" class="w-full object-cover h-24"><div class="p-2 bg-white text-xs font-bold">Miami Coastal • $1.2M</div></div>
-                    <div class="mt-2 bg-brand-red text-white p-2 rounded text-xs font-bold text-center">HSBC Mortgage Rate: 4.5%</div>`;
-                } else {
-                    botHtml = "I've noted that.";
-                }
-                
-                chat.innerHTML += `<div class="flex gap-3 chat-bubble-in mb-4"><div class="w-8 h-8 bg-gray-900 rounded-full flex-shrink-0 flex items-center justify-center text-white text-xs"><i class="fa-solid fa-robot"></i></div><div class="bg-white p-3 rounded-lg rounded-tl-none shadow-sm border border-gray-200 text-sm text-gray-700 w-full">${botHtml}</div></div>`;
+                chat.innerHTML += `<div class="flex gap-3 chat-bubble-in mb-4"><div class="w-8 h-8 bg-gray-900 rounded-full flex-shrink-0 flex items-center justify-center text-white text-xs"><i class="fa-solid fa-robot"></i></div><div class="bg-white p-3 rounded-lg rounded-tl-none shadow-sm border border-gray-200 text-sm text-gray-700 w-full">${botResp}</div></div>`;
                 chat.scrollTop = chat.scrollHeight;
             }, 600);
+        }
+
+        function handleChat() {
+            const input = document.getElementById('copilot-input');
+            if(input.value) {
+                // simple echo for custom typing
+                const txt = input.value;
+                document.getElementById('chat-container').innerHTML += `<div class="flex gap-3 justify-end chat-bubble-in mb-4"><div class="bg-brand-red text-white p-3 rounded-lg rounded-tr-none shadow-sm text-sm">${txt}</div></div>`;
+                input.value = '';
+                setTimeout(() => {
+                     document.getElementById('chat-container').innerHTML += `<div class="flex gap-3 chat-bubble-in mb-4"><div class="w-8 h-8 bg-gray-900 rounded-full flex-shrink-0 flex items-center justify-center text-white text-xs"><i class="fa-solid fa-robot"></i></div><div class="bg-white p-3 rounded-lg rounded-tl-none shadow-sm border border-gray-200 text-sm text-gray-700 w-full">I've noted that in the meeting minutes.</div></div>`;
+                     document.getElementById('chat-container').scrollTop = document.getElementById('chat-container').scrollHeight;
+                }, 500);
+            }
         }
     </script>
 </body>
