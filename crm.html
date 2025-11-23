@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WealthOS | CRM Discovery</title>
+    <title>Wealth | Lead Discovery</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
@@ -38,11 +38,11 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
                 <div class="flex items-center">
                     <div class="w-8 h-8 bg-brand-red text-white flex items-center justify-center font-bold text-lg mr-3 rounded"><i class="fa-solid fa-magnifying-glass"></i></div>
-                    <h2 class="text-xl font-bold text-gray-800">Smart CRM Discovery</h2>
+                    <h2 class="text-xl font-bold text-gray-800">Smart Lead Discovery</h2>
                 </div>
                 <nav class="flex space-x-4">
                     <a href="index.html" class="text-gray-600 hover:text-gray-900 flex items-center"><i class="fa-solid fa-house mr-1"></i> Home</a>
-                    <a href="crm.html" class="text-red-600 font-bold border-b-2 border-brand-red pb-1 flex items-center"><i class="fa-solid fa-magnifying-glass mr-1"></i> CRM</a>
+                    <a href="crm.html" class="text-red-600 font-bold border-b-2 border-brand-red pb-1 flex items-center"><i class="fa-solid fa-magnifying-glass mr-1"></i> Lead</a>
                     <a href="planning.html" class="text-gray-600 hover:text-gray-900 flex items-center"><i class="fa-solid fa-user-check mr-1"></i> Planning</a>
                     <a href="performance.html" class="text-gray-600 hover:text-gray-900 flex items-center"><i class="fa-solid fa-chart-pie mr-1"></i> Performance</a>
                 </nav>
@@ -167,7 +167,7 @@
         <div id="chat-container" class="flex-1 overflow-y-auto space-y-4 mb-4">
             <div class="flex gap-3 chat-bubble-in mb-4">
                 <div class="w-8 h-8 bg-gray-900 rounded-full flex-shrink-0 flex items-center justify-center text-white text-xs"><i class="fa-solid fa-robot"></i></div>
-                <div class="bg-white p-3 rounded-lg rounded-tl-none shadow-sm border border-gray-200 text-sm text-gray-700 w-full">Good morning, John. How can I help with your CRM today?</div>
+                <div class="bg-white p-3 rounded-lg rounded-tl-none shadow-sm border border-gray-200 text-sm text-gray-700 w-full">Good morning, John. How can I help with your discover leads today?</div>
             </div>
         </div>
 
@@ -260,7 +260,7 @@
                 
                 // Simulate AI response
                 setTimeout(() => {
-                    sendChatMessage(`Analysis requested for: **${message}**. Please wait for the results.`, false);
+                    sendChatMessage(`Analysis requested for: ${message}. Please wait for the results.`, false);
                 }, 800);
                 
                 input.value = '';
