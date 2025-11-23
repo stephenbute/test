@@ -21,14 +21,14 @@
         }
         .chat-bubble-in { animation: slideIn 0.3s ease-out; }
         @keyframes slideIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        /* Responsive chat panel */
+        /* Responsive Copilot Panel Styling */
         .copilot-panel {
             width: 100%;
             border-left: none;
         }
         @media (min-width: 1024px) {
             .copilot-panel {
-                width: 384px; /* w-96 */
+                width: 384px; /* lg:w-96 */
                 border-left: 1px solid #e5e7eb;
             }
         }
@@ -37,124 +37,144 @@
 <body class="bg-gray-100 text-gray-800 h-screen flex flex-col lg:flex-row overflow-hidden">
 
     <div class="flex-1 flex flex-col overflow-y-auto">
+        
         <header class="bg-white border-b border-gray-200 flex-shrink-0 sticky top-0 z-10">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
                 <div class="flex items-center">
                     <div class="w-8 h-8 bg-brand-red text-white flex items-center justify-center font-bold text-lg mr-3 rounded"><i class="fa-solid fa-chart-pie"></i></div>
-                    <h2 class="text-xl font-bold text-gray-800">Team Performance Review</h2>
+                    <h2 class="text-xl font-bold text-gray-800">Sales Performance</h2>
                 </div>
                 <nav class="flex space-x-4">
+                    <a href="index.html" class="text-gray-600 hover:text-gray-900 flex items-center"><i class="fa-solid fa-house mr-1"></i> Home</a>
                     <a href="crm.html" class="text-gray-600 hover:text-gray-900 flex items-center"><i class="fa-solid fa-magnifying-glass mr-1"></i> CRM</a>
                     <a href="planning.html" class="text-gray-600 hover:text-gray-900 flex items-center"><i class="fa-solid fa-user-check mr-1"></i> Planning</a>
                     <a href="performance.html" class="text-red-600 font-bold border-b-2 border-brand-red pb-1 flex items-center"><i class="fa-solid fa-chart-pie mr-1"></i> Performance</a>
                 </nav>
-                <a href="index.html" class="text-gray-400 hover:text-brand-red text-lg"><i class="fa-solid fa-house"></i></a>
+                <div class="text-sm text-gray-500 hidden sm:block"><i class="fa-regular fa-calendar mr-2"></i> Nov 23, 2025</div>
             </div>
         </header>
 
         <main class="flex-1 p-4 sm:p-6 lg:p-8">
             <div class="max-w-5xl mx-auto space-y-8">
-                <div class="text-center mb-8">
-                    <h1 class="text-3xl font-bold text-gray-900 mb-2">Q4 Sales Leaderboard</h1>
-                    <p class="text-gray-500">View team performance and Copilot recommendations.</p>
-                </div>
 
-                <div id="copilot-insight-card" class="bg-yellow-100 rounded-xl p-5 shadow-xl border-l-8 border-yellow-500 transition duration-300">
+                <div id="copilot-insight-card" class="bg-yellow-100 rounded-xl p-5 shadow-lg border-l-8 border-yellow-500 transition duration-300">
                     <div class="flex items-start gap-4">
-                        <div class="text-4xl text-yellow-700"><i class="fa-solid fa-magnifying-glass-chart"></i></div> <div class="flex-1">
+                        <div class="text-4xl text-yellow-700"><i class="fa-solid fa-lightbulb"></i></div>
+                        <div class="flex-1">
                             <h3 class="font-bold text-xl text-yellow-800 mb-2 flex items-center">
-                                <span class="bg-yellow-500 text-gray-800 text-xs font-bold px-2 py-0.5 rounded-full mr-2">ACTION</span> Copilot Insight: Coaching Opportunity
+                                <span class="bg-yellow-600 text-white text-xs font-bold px-2 py-0.5 rounded-full mr-2">INSIGHT</span> Coaching Opportunity
                             </h3>
-                            <p class="text-sm text-yellow-700">Team member **Alex Johnson** is trending 15% behind his peers in HNW client acquisition. **Proactive action required** to prevent a Q4 miss.</p>
-                            <button onclick="sendActionToCopilot('Proactively Schedule 1:1 Review with Alex Johnson')" class="mt-4 text-sm bg-yellow-600 hover:bg-yellow-700 text-white font-semibold px-4 py-2 rounded-lg transition shadow-md flex items-center">
-                                <i class="fa-solid fa-calendar-plus mr-2"></i> Proactively Schedule 1:1 Review
+                            <p class="text-sm text-gray-700">Team West's success rate on ESG mandate referrals is 15% below the national average. Suggest a brief training session.</p>
+                            <button onclick="handleCopilotInput('Team West ESG coaching plan')" class="mt-3 text-sm font-semibold text-yellow-700 hover:underline flex items-center">
+                                Generate Coaching Plan <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
                             </button>
                         </div>
                     </div>
                 </div>
-
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                    
-                    <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 lg:col-span-2">
-                        <h3 class="font-bold text-lg mb-4 border-b pb-2 flex items-center"><i class="fa-solid fa-ranking-star text-gray-500 mr-2"></i> Individual Revenue Ranking</h3>
-                        <table class="w-full text-left table-auto">
-                            <thead>
-                                <tr class="text-gray-500 text-xs uppercase border-b">
-                                    <th class="p-3">Rank</th><th class="p-3">Name</th><th class="p-3">Revenue</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr class="bg-red-50"><td class="p-3 font-bold text-red-700">1.</td><td class="p-3 font-bold text-red-700">John Anderson</td><td class="p-3 font-bold">$1.2M</td></tr>
-                                <tr class="hover:bg-gray-50"><td class="p-3">2.</td><td class="p-3">Mike Ross</td><td class="p-3">$1.1M</td></tr>
-                                <tr class="hover:bg-yellow-50"><td class="p-3">3.</td><td class="p-3 text-yellow-700 font-bold">Alex Johnson <i class="fa-solid fa-arrow-down text-red-500 text-xs ml-1"></i></td><td class="p-3 text-yellow-700 font-bold">$980k</td></tr>
-                                <tr class="hover:bg-gray-50"><td class="p-3">4.</td><td class="p-3">David Lee</td><td class="p-3">$950k</td></tr>
-                            </tbody>
-                        </table>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                        <p class="text-sm text-gray-500 font-semibold mb-1">QTD Sales Volume</p>
+                        <p class="text-3xl font-bold text-gray-900">$2.4M</p>
+                        <p class="text-xs text-green-600 mt-1"><i class="fa-solid fa-arrow-up mr-1"></i> +12% from last quarter</p>
                     </div>
-
-                    <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-                        <h3 class="font-bold text-lg mb-4 border-b pb-2 flex items-center"><i class="fa-solid fa-list-check text-gray-500 mr-2"></i> Quarterly Goal Progress</h3>
-                        <div class="space-y-4">
-                            <div>
-                                <p class="flex justify-between text-sm mb-1"><span class="font-semibold">Team AUM Growth</span><span class="font-bold text-green-600">85% Complete</span></p>
-                                <div class="w-full bg-gray-200 rounded-full h-2"><div class="bg-green-500 h-2 rounded-full transition-all duration-500" style="width: 85%"></div></div>
-                            </div>
-                            <div>
-                                <p class="flex justify-between text-sm mb-1"><span class="font-semibold">New Client Acquisition</span><span class="font-bold text-yellow-600">65% Complete</span></p>
-                                <div class="w-full bg-gray-200 rounded-full h-2"><div class="bg-yellow-500 h-2 rounded-full transition-all duration-500" style="width: 65%"></div></div>
-                            </div>
-                            <div>
-                                <p class="flex justify-between text-sm mb-1"><span class="font-semibold">Insurance Product Penetration</span><span class="font-bold text-red-600">40% Complete</span></p>
-                                <div class="w-full bg-gray-200 rounded-full h-2"><div class="bg-red-500 h-2 rounded-full transition-all duration-500" style="width: 40%"></div></div>
-                            </div>
-                        </div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                        <p class="text-sm text-gray-500 font-semibold mb-1">Referral Pipeline</p>
+                        <p class="text-3xl font-bold text-gray-900">45</p>
+                        <p class="text-xs text-red-600 mt-1"><i class="fa-solid fa-arrow-down mr-1"></i> -5 referrals this week</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                        <p class="text-sm text-gray-500 font-semibold mb-1">ESG Conversion Rate</p>
+                        <p class="text-3xl font-bold text-gray-900">65%</p>
+                        <p class="text-xs text-gray-500 mt-1">National Avg: 71%</p>
                     </div>
                 </div>
 
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <div class="lg:col-span-2 bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                        <h3 class="font-bold text-lg mb-4 border-b pb-2">Team Leaderboard (YTD)</h3>
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between p-3 bg-green-50 rounded-lg">
+                                <div class="flex items-center">
+                                    <span class="font-bold w-4 text-green-700">1.</span>
+                                    <span class="font-semibold text-gray-800 ml-3">Team North</span>
+                                </div>
+                                <div class="text-right">
+                                    <p class="font-bold text-lg text-green-700">$9.1M</p>
+                                    <span class="text-xs text-gray-500">110% Target</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between p-3 bg-yellow-50 rounded-lg animate-pulse-slow">
+                                <div class="flex items-center">
+                                    <span class="font-bold w-4 text-gray-500">2.</span>
+                                    <span class="font-semibold text-gray-800 ml-3">Team East</span>
+                                </div>
+                                <div class="text-right">
+                                    <p class="font-bold text-lg text-gray-800">$8.0M</p>
+                                    <span class="text-xs text-gray-500">100% Target</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between p-3 bg-red-50 rounded-lg">
+                                <div class="flex items-center">
+                                    <span class="font-bold w-4 text-red-700">3.</span>
+                                    <span class="font-semibold text-gray-800 ml-3">Team West</span>
+                                </div>
+                                <div class="text-right">
+                                    <p class="font-bold text-lg text-gray-800">$6.5M</p>
+                                    <span class="text-xs text-red-700">81% Target</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                        <h3 class="font-bold text-lg mb-4 border-b pb-2">Forecast Confidence</h3>
+                        <div class="text-center py-6">
+                            <div class="w-24 h-24 mx-auto mb-4 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-4xl font-bold border-4 border-blue-300">88%</div>
+                            <p class="text-gray-700 font-semibold">High Confidence</p>
+                            <p class="text-xs text-gray-500 mt-1">AI projects 95% likelihood of hitting quarterly target.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </main>
     </div>
 
-    <div class="copilot-panel bg-white flex flex-col flex-shrink-0 p-4 shadow-2xl lg:shadow-none">
+    <aside class="copilot-panel bg-white flex flex-col flex-shrink-0 p-4 shadow-2xl lg:shadow-none">
         <div class="flex justify-between items-center mb-4 pb-2 border-b border-gray-200">
-            <h3 class="text-xl font-bold text-gray-900 flex items-center"><i class="fa-solid fa-sparkles text-brand-red mr-2"></i> Performance Copilot</h3>
-            <span class="text-xs text-gray-500">Q4 Focus</span>
+            <h3 class="text-xl font-bold text-gray-900 flex items-center"><i class="fa-solid fa-sparkles text-brand-red mr-2"></i> Wealth Copilot</h3>
+            <span class="text-xs text-gray-500"><i class="fa-solid fa-robot text-gray-400"></i></span>
         </div>
         
         <div id="chat-container" class="flex-1 overflow-y-auto space-y-4 mb-4">
             <div class="flex gap-3 chat-bubble-in mb-4">
                 <div class="w-8 h-8 bg-gray-900 rounded-full flex-shrink-0 flex items-center justify-center text-white text-xs"><i class="fa-solid fa-robot"></i></div>
-                <div class="bg-white p-3 rounded-lg rounded-tl-none shadow-sm border border-gray-200 text-sm text-gray-700 w-full">I've identified an immediate coaching opportunity with Alex Johnson. How would you like to proceed?</div>
+                <div class="bg-white p-3 rounded-lg rounded-tl-none shadow-sm border border-gray-200 text-sm text-gray-700 w-full">Welcome back. Your dashboard has been updated. Do you have any questions about this quarter's performance?</div>
             </div>
         </div>
 
         <div class="flex-shrink-0 space-y-3">
-            <div class="flex flex-wrap gap-2">
-                <button onclick="sendActionToCopilot('Generate a coaching plan for Alex Johnson on HNW acquisition')" class="text-xs px-3 py-1 bg-gray-200 rounded-full text-gray-700 hover:bg-gray-300 transition flex items-center"><i class="fa-solid fa-person-chalkboard mr-1"></i> Generate Coaching Plan</button>
-                <button onclick="sendActionToCopilot('Filter all team data to show only new client acquisition metrics')" class="text-xs px-3 py-1 bg-gray-200 rounded-full text-gray-700 hover:bg-gray-300 transition flex items-center"><i class="fa-solid fa-filter mr-1"></i> Filter Acquisition Data</button>
+            
+            <div class="mb-3">
+                <div class="flex items-center gap-2 mb-2">
+                    <i class="fa-solid fa-bolt text-blue-400 text-xs"></i>
+                    <p class="text-xs font-bold text-gray-400 uppercase">Quick Actions</p>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                    <button onclick="handleCopilotInput('Why is Team West struggling with ESG?')" class="whitespace-nowrap px-3 py-1 bg-gray-200 rounded-full text-xs text-gray-700 hover:bg-gray-300 transition">Analyze Team West</button>
+                    <button onclick="handleCopilotInput('Top clients driving growth this quarter')" class="whitespace-nowrap px-3 py-1 bg-gray-200 rounded-full text-xs text-gray-700 hover:bg-gray-300 transition">Identify Growth Drivers</button>
+                </div>
             </div>
+
             <div class="relative flex items-center">
                 <button class="text-gray-400 hover:text-brand-red mr-2 text-lg"><i class="fa-solid fa-microphone"></i></button>
-                <input type="text" id="copilot-input" onkeypress="if(event.key === 'Enter') handleCopilotInput()" placeholder="Type text or click a shortcut..." class="flex-1 border border-gray-300 rounded-full pl-4 pr-10 py-2 text-sm focus:outline-none focus:border-brand-red shadow-sm">
+                <input type="text" id="copilot-input" onkeypress="if(event.key === 'Enter') handleCopilotInput()" placeholder="Type a command..." class="flex-1 border border-gray-300 rounded-full pl-4 pr-10 py-2 text-sm focus:outline-none focus:border-brand-red shadow-sm">
                 <button onclick="handleCopilotInput()" class="absolute right-3 top-2 text-brand-red hover:text-red-700"><i class="fa-solid fa-paper-plane"></i></button>
             </div>
         </div>
-    </div>
+
+    </aside>
 
     <script>
-        function sendActionToCopilot(action) {
-            sendChatMessage(action, true); // Send the action text as user message
-            
-            // Simulate AI response
-            setTimeout(() => {
-                let botResp = `Confirmed: I have initiated the task for **${action}**. Results will be available in the chat shortly.`;
-                if (action.includes('Schedule')) {
-                    botResp = `**Confirmed:** A 30-minute 1:1 review has been added to both your and Alex Johnson's calendar for tomorrow at 2:00 PM.`;
-                }
-                sendChatMessage(botResp, false);
-            }, 800);
-        }
-        
         function sendChatMessage(message, isUser = true) {
             const chatContainer = document.getElementById('chat-container');
             
@@ -170,18 +190,31 @@
             chatContainer.scrollTop = chatContainer.scrollHeight;
         }
 
-        function handleCopilotInput() {
+        function handleCopilotInput(presetMessage) {
             const input = document.getElementById('copilot-input');
-            if (input.value.trim() !== '') {
-                const message = input.value.trim();
+            const message = presetMessage || input.value.trim();
+
+            if (message !== '') {
                 sendChatMessage(message, true);
                 
-                // Simulate AI response
-                setTimeout(() => {
-                    sendChatMessage(`Analysis requested for: **${message}**. Please wait for the results.`, false);
-                }, 800);
+                // Clear input if it wasn't a preset
+                if (!presetMessage) {
+                    input.value = '';
+                }
+
+                // Simulate AI response based on message
+                let response = `Analysis requested for: **${message}**. Please wait for the results.`;
+                if (message.includes('Team West struggling')) {
+                    response = `Team West's primary gap is **lack of confidence in new product documentation**. A targeted training session is recommended. I've sent a detailed plan to your inbox.`;
+                } else if (message.includes('growth this quarter')) {
+                    response = `Top 3 growth drivers: **Robert Chen** (Liquidity Event), **Alice Num** (New ETF allocation), and **Marcus Fenix** (New term deposit).`;
+                } else if (message.includes('ESG coaching plan')) {
+                    response = `Coaching Plan Generated: Focus on product knowledge (ESG Fund X vs. ESG Fund Y). Schedule sent to Team West leaders.`;
+                }
                 
-                input.value = '';
+                setTimeout(() => {
+                    sendChatMessage(response, false);
+                }, 800);
             }
         }
     </script>
