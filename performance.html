@@ -327,15 +327,15 @@
                 }
 
                 // Simulate AI response based on message
-                let response = `Analysis requested for: **${message}**. Please wait for the results.`;
+                let response = `Analysis requested for: ${message}. Please wait for the results.`;
                 if (message.includes('Team West struggling')) {
-                    response = `Team West's primary gap is **lack of confidence in new product documentation**. A targeted training session is recommended. I've sent a detailed plan to your inbox.`;
+                    response = `Team West's primary gap is lack of confidence in new product documentation. A targeted training session is recommended. I've sent a detailed plan to your inbox.`;
                 } else if (message.includes('growth this quarter')) {
-                    response = `Top 3 growth drivers: **Robert Chen** (Liquidity Event), **Alice Num** (New ETF allocation), and **Sarah Jenkins** (New client onboard).`;
+                    response = `Top 3 growth drivers: Robert Chen (Liquidity Event), Alice Num (New ETF allocation), and Sarah Jenkins (New client onboard).`;
                 } else if (message.includes('ESG coaching plan')) {
                     response = `Coaching Plan Generated: Focus on product knowledge (ESG Fund X vs. ESG Fund Y). Schedule sent to Team West leaders.`;
                 } else if (message.includes('Schedule Team West ESG coaching')) {
-                    response = `Meeting scheduled with Team West leaders for **Tuesday, 10:00 AM** to review ESG process. Calendar invites sent.`;
+                    response = `Meeting scheduled with Team West leaders for Tuesday, 10:00 AM to review ESG process. Calendar invites sent.`;
                 }
 
                 setTimeout(() => {

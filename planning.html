@@ -108,7 +108,7 @@
         <div id="chat-container" class="flex-1 overflow-y-auto space-y-4 mb-4">
             <div class="flex gap-3 chat-bubble-in mb-4">
                 <div class="w-8 h-8 bg-gray-900 rounded-full flex-shrink-0 flex items-center justify-center text-white text-xs"><i class="fa-solid fa-robot"></i></div>
-                <div class="bg-white p-3 rounded-lg rounded-tl-none shadow-sm border border-gray-200 text-sm text-gray-700 w-full">Welcome, John. I have loaded **Robert Chen's** Financial Planning profile.</div>
+                <div class="bg-white p-3 rounded-lg rounded-tl-none shadow-sm border border-gray-200 text-sm text-gray-700 w-full">Welcome, John. I have loaded Robert Chen's Financial Planning profile.</div>
             </div>
             <div id="copilot-initial-insight">
                 </div>
@@ -144,7 +144,7 @@
                     color: 'red',
                     icon: 'fa-solid fa-circle-exclamation',
                     title: 'ALERT: Cash Drag Risk',
-                    message: "I've analyzed Robert's portfolio. He is holding **60% in Cash ($3.1M)**. As he plans to retire in 8 years, this cash drag will miss his $8M target.",
+                    message: "I've analyzed Robert's portfolio. He is holding 60% in Cash ($3.1M). As he plans to retire in 8 years, this cash drag will miss his $8M target.",
                     actionText: "Run Retirement Projection",
                     action: "funds"
                 },
@@ -198,7 +198,7 @@
                 copilotInit: {
                     color: 'purple',
                     icon: 'fa-solid fa-handshake',
-                    title: 'Actionable: Complete Discovery',
+                    title: 'Complete Discovery',
                     message: "We've gathered all static data. Use the conversation starters to confirm her risk appetite and long-term goals.",
                     actionText: "Generate Discovery Questions",
                     action: "talking_points"
@@ -235,8 +235,8 @@
                 copilotInit: {
                     color: 'green',
                     icon: 'fa-solid fa-circle-check',
-                    title: 'Actionable Insight',
-                    message: "Alice's portfolio is **on track** for her Singapore home goal. Review her mortgage options and loan-to-value ratio.",
+                    title: 'Insight',
+                    message: "Alice's portfolio is on track for her Singapore home goal. Review her mortgage options and loan-to-value ratio.",
                     actionText: "Check Mortgage Pre-Approval",
                     action: "mortgage"
                 },
@@ -328,7 +328,7 @@
             chatContainer.innerHTML = `
                 <div class="flex gap-3 chat-bubble-in mb-4">
                     <div class="w-8 h-8 bg-gray-900 rounded-full flex-shrink-0 flex items-center justify-center text-white text-xs"><i class="fa-solid fa-robot"></i></div>
-                    <div class="bg-white p-3 rounded-lg rounded-tl-none shadow-sm border border-gray-200 text-sm text-gray-700 w-full">Welcome, John. I have loaded **${client.name}'s** Financial Planning profile.</div>
+                    <div class="bg-white p-3 rounded-lg rounded-tl-none shadow-sm border border-gray-200 text-sm text-gray-700 w-full">Welcome, John. I have loaded ${client.name}'s Financial Planning profile.</div>
                 </div>
                 <div id="action-chips" class="flex flex-wrap gap-2 pt-2 border-t border-gray-100">
                     </div>
@@ -373,25 +373,25 @@
             if (currentClient === 'robert') {
                 if (action === 'funds') {
                     userText = "Run Retirement Projection";
-                    botResp = `**Projection Run:** If Robert maintains 60% cash, he will miss his $8M target by **$2.0M**. Recommended action: Reallocate $1.5M of cash to Growth Strategy Funds.`;
+                    botResp = `Projection Run: If Robert maintains 60% cash, he will miss his $8M target by $2.0M. Recommended action: Reallocate $1.5M of cash to Growth Strategy Funds.`;
                 } else if (action === 'property') {
                     userText = "Show Florida Property Details";
-                    botResp = `**Florida Property:** Estimated value $1.2M. Robert has a pre-approved $450K bridge loan. The current strategy is to use $750K from his liquidity cash.`;
+                    botResp = `Florida Property: Estimated value $1.2M. Robert has a pre-approved $450K bridge loan. The current strategy is to use $750K from his liquidity cash.`;
                 }
             } else if (currentClient === 'sarah') {
                 if(action === 'talking_points') {
                     userText = "Generate Discovery Questions";
                     // Updated QnA for new client discovery
-                    botResp = `**Discovery Conversation Starters for Sarah Jenkins:**<br><br> <ul class="list-disc pl-4 space-y-1"> <li>"Given your high focus on protection products, is your main goal capital preservation or wealth transfer to the next generation?"</li> <li>"How comfortable are you with market volatility for the portion of your portfolio outside of insurance products?"</li> <li>"What are your top 3 non-negotiable financial priorities over the next five years?"</li> </ul>`;
+                    botResp = `Discovery Conversation Starters for Sarah Jenkins:<br><br> <ul class="list-disc pl-4 space-y-1"> <li>"Given your high focus on protection products, is your main goal capital preservation or wealth transfer to the next generation?"</li> <li>"How comfortable are you with market volatility for the portion of your portfolio outside of insurance products?"</li> <li>"What are your top 3 non-negotiable financial priorities over the next five years?"</li> </ul>`;
                 }
                 // No other actions defined for Sarah
             } else if (currentClient === 'alice') {
                 if(action === 'mortgage') {
                     userText = "Check Mortgage Pre-Approval";
-                    botResp = `Alice's pre-approval for a loan up to **$600,000 SGD** is valid until Jan 2026. Current best fixed rate is **3.1% for 3 years**. Advise her to utilize her liquid assets for the downpayment.`;
+                    botResp = `Alice's pre-approval for a loan up to $600,000 SGD is valid until Jan 2026. Current best fixed rate is 3.1% for 3 years. Advise her to utilize her liquid assets for the downpayment.`;
                 } else if (action === 'etf') {
                     userText = "Suggest new low-cost global ETF";
-                    botResp = `The Vanguard FTSE Global All Cap UCITS ETF (VWRA) is a suitable, low-cost (**0.22% OCF**) option to diversify her core holdings.`;
+                    botResp = `The Vanguard FTSE Global All Cap UCITS ETF (VWRA) is a suitable, low-cost (0.22% OCF) option to diversify her core holdings.`;
                 }
             }
 
