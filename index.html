@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,77 +9,122 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Open Sans', sans-serif; }
-        .brand-red { color: #db0011; }
-        .bg-brand-red { background-color: #db0011; }
-        .text-brand-red { color: #db0011; }
-        .card-shadow { box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); }
+        body {
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .brand-red {
+            color: #db0011;
+        }
+
+        .bg-brand-red {
+            background-color: #db0011;
+        }
+
+        .text-brand-red {
+            color: #db0011;
+        }
+
+        .card-shadow {
+            box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        /* Style for the Investment Officer Card's blue elements */
+        .text-brand-blue {
+            color: #2563eb;
+        }
+        .border-blue-600 {
+            border-color: #2563eb;
+        }
+        .bg-blue-600 {
+            background-color: #2563eb;
+        }
+        .hover\:bg-blue-700:hover {
+            background-color: #1d4ed8;
+        }
     </style>
 </head>
+
 <body class="bg-gray-100 min-h-screen flex flex-col items-center justify-center p-4 sm:p-8">
 
     <div class="max-w-6xl mx-auto w-full">
-        <div class="text-center mb-12">
+        <div class="text-center mb-10">
             <div class="flex items-center justify-center mb-4">
-                <div class="w-12 h-12 bg-brand-red text-white flex items-center justify-center font-bold text-2xl mr-3 rounded-xl">
-                    <i class="fa-solid fa-building-columns"></i>
+                <div
+                    class="w-10 h-10 bg-brand-red text-white flex items-center justify-center font-bold text-xl mr-3 rounded">
+                    <i class="fa-solid fa-cubes-stacked"></i>
                 </div>
-                <span class="font-bold text-4xl tracking-tight text-gray-800">WEALTH<span class="text-red-600">OS</span> Demo Suite</span>
+                <h1 class="text-3xl font-bold text-gray-800">Wealth (AI-Native) Demo</h1>
             </div>
-            <p class="text-xl text-gray-500 mt-2">Experience the Copilot-Driven platform, featuring **dynamic action panels** and immediate workflow shortcuts.</p>
+            <p class="text-gray-500 text-lg">Select a role to view the AI-augmented experience.</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
 
-            <a href="crm.html" class="block bg-white p-6 rounded-xl border-t-4 border-red-600 shadow-xl hover:shadow-2xl transition duration-300 card-shadow">
-                <div class="text-center mb-4">
-                    <i class="fa-solid fa-user-tie text-red-600 text-3xl"></i>
-                    <h3 class="text-2xl font-bold text-gray-900 mt-2">Wealth Manager</h3>
-                    <p class="text-sm text-gray-500">John Anderson - AI-Driven Action</p>
+            <div
+                class="bg-white rounded-xl border-t-4 border-brand-red shadow-xl hover:shadow-2xl transition duration-300 card-shadow flex flex-col p-6">
+                <div class="text-center mb-5">
+                    <i class="fa-solid fa-user-tie text-brand-red text-3xl"></i>
+                    <h3 class="text-xl font-bold text-gray-900 mt-2">Relationship Manager</h3>
+                    <p class="text-sm text-gray-500">Allen Johnson - AI-Augmented Workflow</p>
                 </div>
-                <div class="space-y-3 text-sm">
-                    <p class="flex items-center text-gray-700"><i class="fa-solid fa-bell w-5 text-red-500 mr-2"></i> **Copilot Actions:** Real-time prioritization of clients.</p>
-                    <p class="flex items-center text-gray-700"><i class="fa-solid fa-radiation w-5 text-red-500 mr-2"></i> **Planning Panel:** Critical risk exposure visualized.</p>
-                    <p class="flex items-center text-gray-700"><i class="fa-solid fa-magnifying-glass-chart w-5 text-red-500 mr-2"></i> **Performance Alerts:** Coaching opportunities highlighted.</p>
+                <div class="space-y-4 text-sm flex-grow mb-6">
+                    <p class="flex items-center text-gray-700"><i class="fa-solid fa-user-check w-5 text-red-500 mr-3"></i>
+                        Financial Planning: Real-time goal tracking & scenario modelling.</p>
+                    <p class="flex items-center text-gray-700"><i class="fa-solid fa-magnifying-glass w-5 text-red-500 mr-3"></i>
+                        Opportunity Discovery (Start): Natural language client search.</p>
+                    <p class="flex items-center text-gray-700"><i class="fa-solid fa-chart-pie w-5 text-red-500 mr-3"></i>
+                        Sales Performance: Real-time team metrics & coaching insights.</p>
                 </div>
-                <button class="mt-6 w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 rounded transition">
-                    Access Manager Platform <i class="fa-solid fa-arrow-right ml-2"></i>
-                </button>
-            </a>
+                <a href="opportunity.html"
+                    class="w-full bg-brand-red hover:bg-red-700 text-white font-bold py-3 text-sm rounded text-center transition">Relationship Manager Demo<i class="fa-solid fa-arrow-right ml-2"></i>
+                </a>
+            </div>
 
-            <a href="investment.html" class="block bg-white p-6 rounded-xl border-t-4 border-blue-600 shadow-xl hover:shadow-2xl transition duration-300 card-shadow">
-                <div class="text-center mb-4">
+            <div
+                class="bg-white rounded-xl border-t-4 border-blue-600 shadow-xl hover:shadow-2xl transition duration-300 card-shadow flex flex-col p-6">
+                <div class="text-center mb-5">
                     <i class="fa-solid fa-chart-line text-blue-600 text-3xl"></i>
-                    <h3 class="text-2xl font-bold text-gray-900 mt-2">Investment Officer</h3>
-                    <p class="text-sm text-gray-500">Alex Chen - Automated Research</p>
+                    <h3 class="text-xl font-bold text-gray-900 mt-2">Investment Officer</h3>
+                    <p class="text-sm text-gray-500">John Smith - AI-Driven Research</p>
                 </div>
-                <div class="space-y-3 text-sm">
-                    <p class="flex items-center text-gray-700"><i class="fa-solid fa-triangle-exclamation w-5 text-blue-500 mr-2"></i> **Copilot Risk Monitoring:** Flag funds violating policies.</p>
-                    <p class="flex items-center text-gray-700"><i class="fa-solid fa-file-invoice w-5 text-blue-500 mr-2"></i> **Vetting Queue:** Dynamic product task list.</p>
-                    <p class="flex items-center text-gray-700"><i class="fa-solid fa-calendar-week w-5 text-blue-500 mr-2"></i> **Scheduling Agents:** Proactive meeting coordination.</p>
+                <div class="space-y-4 text-sm flex-grow mb-6">
+                    <p class="flex items-center text-gray-700"><i class="fa-solid fa-atom w-5 text-blue-500 mr-3"></i>
+                        Vetting Assistant: Automated fund/stock due diligence.</p>
+                    <p class="flex items-center text-gray-700"><i class="fa-solid fa-book-open-reader w-5 text-blue-500 mr-3"></i>
+                        Research Synthesis: Real-time market news summarization.</p>
+                    <p class="flex items-center text-gray-700"><i class="fa-solid fa-chart-simple w-5 text-blue-500 mr-3"></i>
+                        Deep Dive Tools: Querying proprietary and public data.</p>
                 </div>
-                <button class="mt-6 w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded transition">
-                    Access Officer Portal <i class="fa-solid fa-arrow-right ml-2"></i>
-                </button>
-            </a>
+                <a href="investment.html"
+                    class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 text-sm rounded text-center transition">Investment Officer Demo<i class="fa-solid fa-arrow-right ml-2"></i>
+                </a>
+            </div>
 
-            <a href="customer.html" class="block bg-white p-6 rounded-xl border-t-4 border-green-600 shadow-xl hover:shadow-2xl transition duration-300 card-shadow">
-                <div class="text-center mb-4">
+            <div
+                class="bg-white rounded-xl border-t-4 border-green-600 shadow-xl hover:shadow-2xl transition duration-300 card-shadow flex flex-col p-6">
+                <div class="text-center mb-5">
                     <i class="fa-solid fa-mobile-screen-button text-green-600 text-3xl"></i>
-                    <h3 class="text-2xl font-bold text-gray-900 mt-2">Customer</h3>
+                    <h3 class="text-xl font-bold text-gray-900 mt-2">Customer</h3>
                     <p class="text-sm text-gray-500">Jane Doe - Contextual Alerts</p>
                 </div>
-                <div class="space-y-3 text-sm">
-                    <p class="flex items-center text-gray-700"><i class="fa-solid fa-bell w-5 text-green-500 mr-2"></i> **Copilot Alert:** Personalized warnings (gold price, rates).</p>
-                    <p class="flex items-center text-gray-700"><i class="fa-solid fa-sliders w-5 text-green-500 mr-2"></i> **Assistant Action:** Action chips for fast self-service.</p>
-                    <p class="flex items-center text-gray-700"><i class="fa-solid fa-phone-volume w-5 text-green-500 mr-2"></i> **WM Trigger:** Direct contact recommendation with context.</p>
+                <div class="space-y-4 text-sm flex-grow mb-6">
+                    <p class="flex items-center text-gray-700"><i class="fa-solid fa-bell w-5 text-green-500 mr-3"></i>
+                        AI Agent Nudge: Personalized warnings (gold price, rates).</p>
+                    <p class="flex items-center text-gray-700"><i
+                            class="fa-solid fa-sliders w-5 text-green-500 mr-3"></i> Assistant Action: Action chips for
+                        fast self-service.</p>
+                    <p class="flex items-center text-gray-700"><i
+                            class="fa-solid fa-phone-volume w-5 text-green-500 mr-3"></i> WM Trigger: Direct contact
+                        recommendation with context.</p>
                 </div>
-                <button class="mt-6 w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 rounded transition">
-                    Access Customer Mobile <i class="fa-solid fa-arrow-right ml-2"></i>
-                </button>
-            </a>
-
+                <a href="customer.html"
+                    class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 text-sm rounded text-center transition">Customer Mobile Demo<i class="fa-solid fa-arrow-right ml-2"></i>
+                </a>
+            </div>
         </div>
+
     </div>
+
 </body>
+
 </html>

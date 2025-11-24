@@ -39,23 +39,15 @@
         <header class="bg-white border-b border-gray-200 flex-shrink-0 sticky top-0 z-10">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
                 <div class="flex items-center">
-                    <div class="w-8 h-8 bg-brand-red text-white flex items-center justify-center font-bold text-lg mr-3 rounded"><i class="fa-solid fa-user-check"></i></div>
-                    <h2 class="text-xl font-bold text-gray-800" id="header-title">Financial Planning: Robert Chen</h2>
+                    <div class="w-8 h-8 bg-brand-red text-white flex items-center justify-center font-bold text-base mr-3 rounded"><i class="fa-solid fa-user-check"></i></div>
+                    <h2 class="font-bold text-lg text-gray-800" id="header-title">Financial Planning: Robert Chen</h2>
                 </div>
-                <nav class="flex space-x-4">
-                    <a href="index.html" class="text-gray-600 hover:text-gray-900 flex items-center"><i class="fa-solid fa-house mr-1"></i> Home</a>
-                    <a href="crm.html" class="text-gray-600 hover:text-gray-900 flex items-center"><i class="fa-solid fa-magnifying-glass mr-1"></i> Lead</a>
+                <nav class="flex space-x-4 text-sm items-center">
+                    <a href="opportunity.html" class="text-gray-600 hover:text-brand-red flex items-center"><i class="fa-solid fa-magnifying-glass mr-1"></i> Opportunity</a>
                     <a href="planning.html" class="text-red-600 font-bold border-b-2 border-brand-red pb-1 flex items-center"><i class="fa-solid fa-user-check mr-1"></i> Planning</a>
-                    <a href="performance.html" class="text-gray-600 hover:text-gray-900 flex items-center"><i class="fa-solid fa-chart-pie mr-1"></i> Performance</a>
+                    <a href="performance.html" class="text-gray-600 hover:text-brand-red flex items-center"><i class="fa-solid fa-chart-pie mr-1"></i> Performance</a>
+                    <a href="index.html" class="text-gray-400 hover:text-brand-red text-lg ml-4"><i class="fa-solid fa-house"></i></a>
                 </nav>
-                <div class="flex items-center gap-3">
-                    <span class="text-xs font-bold text-gray-400 uppercase hidden sm:inline">Demo View:</span>
-                    <select id="client-selector" onchange="switchClient(this.value)" class="border border-gray-300 rounded text-sm p-1 focus:border-brand-red outline-none">
-                        <option value="robert">Robert Chen (Business/Cash)</option>
-                        <option value="sarah">Sarah Jenkins (New/Insurance)</option>
-                        <option value="alice">Alice Num (First Home/Growth)</option>
-                    </select>
-                </div>
             </div>
         </header>
 
@@ -72,7 +64,7 @@
                             </div>
                             <div class="text-right">
                                 <p class="text-xs text-gray-400 font-bold uppercase mb-1">Risk Profile</p>
-                                <span id="p-risk" class="bg-gray-900 text-white px-3 py-1.5 rounded text-sm font-semibold tracking-wide whitespace-nowrap">Aggressive</span>
+                                <span id="p-risk" class="bg-gray-900 text-white px-3 py-1.5 rounded text-sm font-semibold tracking-wide whitespace-nowrap">Balanced</span>
                             </div>
                         </div>
                         <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6 pt-4 border-t border-gray-100">
@@ -86,76 +78,72 @@
 
                 <div id="copilot-insight-main-card" class="rounded-xl shadow-lg transition duration-300">
                     </div>
+
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                     
                     <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
-                        <h3 class="font-bold text-lg mb-4 border-b pb-2">Financial Goals</h3>
-                        <div class="space-y-3" id="goals-container">
+                        <h3 class="font-bold text-lg text-gray-800 mb-4 flex items-center"><i class="fa-solid fa-chart-pie mr-2 text-gray-500"></i> Portfolio Allocation</h3>
+                        <div id="p-holdings" class="space-y-3">
+                            </div>
+                        <div id="p-holdings-msg" class="mt-4 text-center text-sm text-gray-500 pt-4 border-t border-gray-100">
                             </div>
                     </div>
 
                     <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
-                        <h3 class="font-bold text-lg mb-4 border-b pb-2" id="stats-title">Asset Allocation</h3>
-                        <div class="space-y-5" id="stats-container">
+                        <h3 class="font-bold text-lg text-gray-800 mb-4 flex items-center"><i class="fa-solid fa-bullseye-arrow mr-2 text-gray-500"></i> Financial Goals</h3>
+                        <div id="p-goals">
                             </div>
                     </div>
+
                 </div>
 
-                <div id="holdings-panel" class="p-6 w-full border-2 border-dashed border-gray-300 rounded-xl flex items-center justify-center text-gray-400 bg-gray-50">
-                    </div>
             </div>
         </main>
     </div>
 
     <aside class="copilot-panel bg-white flex flex-col flex-shrink-0 p-4 shadow-2xl lg:shadow-none">
         <div class="flex justify-between items-center mb-4 pb-2 border-b border-gray-200">
-            <h3 class="text-xl font-bold text-gray-900 flex items-center"><i class="fa-solid fa-sparkles text-brand-red mr-2"></i> Wealth Copilot</h3>
-            <span class="text-xs text-gray-500"><i class="fa-solid fa-robot text-gray-400"></i></span>
+            <h3 class="text-xl font-bold text-brand-red flex items-center"><i class="fa-solid fa-robot mr-2"></i> AI Agent</h3>
         </div>
-        
-        <div id="chat-container" class="flex-1 overflow-y-auto space-y-4 mb-4 bg-slate-50">
+        <div id="chat-container" class="flex-1 overflow-y-auto space-y-4 mb-4">
             <div class="flex gap-3 chat-bubble-in mb-4">
                 <div class="w-8 h-8 bg-gray-900 rounded-full flex-shrink-0 flex items-center justify-center text-white text-xs"><i class="fa-solid fa-robot"></i></div>
-                <div class="bg-white p-3 rounded-lg rounded-tl-none shadow-sm border border-gray-200 text-sm text-gray-700 w-full">Ask me for a client summary, goal projection, or to recommend an investment strategy.</div>
+                <div class="bg-white p-3 rounded-lg rounded-tl-none shadow-sm border border-gray-200 text-sm text-gray-700 w-full">Welcome, John. I have loaded **Robert Chen's** Financial Planning profile.</div>
             </div>
-        </div>
-
-        <div class="flex-shrink-0 space-y-3">
-            <div class="flex flex-wrap gap-2 mb-3 pb-1" id="suggestion-chips">
+            <div id="copilot-initial-insight">
                 </div>
-            <div class="relative flex items-center">
-                <button class="text-gray-400 hover:text-brand-red mr-2 text-lg"><i class="fa-solid fa-microphone"></i></button>
-                <input type="text" id="copilot-input" onkeypress="if(event.key === 'Enter') handleChat()" placeholder="Type a command..." class="flex-1 border border-gray-300 rounded-full pl-4 pr-10 py-2 text-sm focus:outline-none focus:border-brand-red shadow-sm">
-                <button onclick="handleChat()" class="absolute right-3 top-2 text-brand-red hover:text-red-700"><i class="fa-solid fa-paper-plane"></i></button>
-            </div>
+            <div id="action-chips" class="flex flex-wrap gap-2 pt-2 border-t border-gray-100">
+                </div>
+        </div>
+        
+        <div class="flex-shrink-0 pt-4 border-t border-gray-200 flex space-x-2">
+            <input type="text" id="copilot-input" placeholder="Add a note or action for Robert..." class="flex-1 border border-gray-300 rounded-lg p-3 text-sm focus:outline-none focus:border-brand-red" onkeypress="if(event.key === 'Enter') handleChat()">
+            <button onclick="handleChat()" class="bg-brand-red hover:bg-red-700 text-white w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 transition"><i class="fa-solid fa-plus"></i></button>
         </div>
     </aside>
 
     <script>
-        // CLIENT DATA OBJECTS
+        // Client data structure (Model)
         const clients = {
             robert: {
                 name: "Robert Chen",
                 img: "https://api.dicebear.com/7.x/avataaars/svg?seed=Robert",
                 status: "Premier Elite Customer | Client since 2014",
-                risk: "Aggressive",
-                demo: "52 / Married, 1 Child (16yo)",
+                risk: "Balanced",
+                demographics: "52 / Married, 1 Child (16yo)",
                 job: "Business Owner (Tech)",
                 aum: "$5,250,000",
                 timeline: "8 Yrs to Retirement",
-                goals: [
-                    { title: "Early Retirement", desc: "Target: Age 60 • Need: $8M", priority: "HIGH PRIORITY", color: "red" },
-                    { title: "Vacation Home (Florida)", desc: "Timeline: 2 Years • Est: $1.2M", priority: "MEDIUM", color: "orange" }
-                ],
-                stats: [
+                allocation: [
                     { label: "Cash & Equivalents", value: "60%", color: "bg-red-600", note: "High Liquidity for Business" },
                     { label: "Equities", value: "30%", color: "bg-gray-600", note: "Underweight" },
                     { label: "Fixed Income", value: "10%", color: "bg-gray-400", note: "Stable" }
                 ],
                 holdingsMsg: "<div class='text-center'><p>Current Strategy: <span class='font-bold text-gray-700'>Short-term Liquidity Focus</span></p><p class='text-xs'>Client holds $3.1M in Money Market Funds</p></div>",
-                // NEW COPILOT INSIGHT STYLE
                 copilotInit: {
-                    color: 'red', icon: 'fa-solid fa-circle-exclamation', title: 'ALERT: Cash Drag Risk',
+                    color: 'red',
+                    icon: 'fa-solid fa-circle-exclamation',
+                    title: 'ALERT: Cash Drag Risk',
                     message: "I've analyzed Robert's portfolio. He is holding **60% in Cash ($3.1M)**. As he plans to retire in 8 years, this cash drag will miss his $8M target.",
                     actionText: "Run Retirement Projection",
                     action: "funds"
@@ -163,68 +151,110 @@
                 chips: [
                     { label: "Suggest Growth Funds", action: "funds" },
                     { label: "Show Florida Property", action: "property" }
-                ]
+                ],
+                // Robert's Goals (Original structure)
+                goalsHtml: `
+                    <div class="border-b pb-3">
+                        <p class="text-sm font-semibold text-gray-700 flex justify-between items-center">Retirement (Age 60) <span class="text-xs font-normal px-2 py-0.5 bg-green-100 text-green-700 rounded-full">On Track</span></p>
+                        <div class="w-full bg-gray-200 rounded-full h-1.5 mt-2"><div class="bg-green-600 h-1.5 rounded-full" style="width: 75%"></div></div>
+                        <p class="text-xs text-gray-500 mt-1 flex justify-between">
+                            <span>Target: $8.0M</span>
+                            <span>Current Projection: $6.0M</span>
+                        </p>
+                    </div>
+                    <div class="border-b pb-3">
+                        <p class="text-sm font-semibold text-gray-700 flex justify-between items-center">Education Fund (Child Age 18) <span class="text-xs font-normal px-2 py-0.5 bg-red-100 text-red-700 rounded-full">Behind</span></p>
+                        <div class="w-full bg-gray-200 rounded-full h-1.5 mt-2"><div class="bg-red-600 h-1.5 rounded-full" style="width: 25%"></div></div>
+                        <p class="text-xs text-gray-500 mt-1 flex justify-between">
+                            <span>Target: $450K</span>
+                            <span>Current: $120K</span>
+                        </p>
+                    </div>
+                    <div>
+                        <p class="text-sm font-semibold text-gray-700 flex justify-between items-center">New Property (Florida) <span class="text-xs font-normal px-2 py-0.5 bg-yellow-100 text-yellow-700 rounded-full">Review</span></p>
+                        <div class="w-full bg-gray-200 rounded-full h-1.5 mt-2"><div class="bg-yellow-600 h-1.5 rounded-full" style="width: 60%"></div></div>
+                        <p class="text-xs text-gray-500 mt-1 flex justify-between">
+                            <span>Target: $1.2M</span>
+                            <span>Available: $750K</span>
+                        </p>
+                    </div>
+                `
             },
             sarah: {
                 name: "Sarah Jenkins",
                 img: "https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah",
-                status: "New Client | Onboarding Phase",
-                risk: "Moderate (Est)",
-                demo: "48 / Divorced, 1 Child (14yo)",
+                status: "New Premier Client | Onboarding",
+                risk: "Undetermined",
+                demographics: "48 / Married, 2 Children (8yo, 12yo)",
                 job: "Director @ Google",
-                aum: "$1,150,000 (Cash)",
-                timeline: "Unknown",
-                goals: [
-                    { title: "Son's Education (Overseas)", desc: "Target: Age 18 • Loc: UK/US", priority: "DISCOVERY", color: "blue" },
-                    { title: "Wealth Protection", desc: "Insurance Needs Analysis", priority: "PENDING", color: "gray" }
+                aum: "$1,800,000",
+                // Updated timeline for new client discovery focus
+                timeline: "Focus on Wealth Discovery", 
+                // Updated allocation to reflect Unknown status
+                allocation: [
+                    { label: "Temporary Holdings (Pre-Allocation)", value: "100%", color: "bg-yellow-400", note: "Waiting for Risk Profile" },
                 ],
-                stats: [
-                    { label: "External Assets", value: "Unknown", color: "bg-gray-300", note: "Pending Open Banking Link" },
-                    { label: "Insurance Coverage", value: "Unknown", color: "bg-gray-300", note: "Policy Review Needed" }
-                ],
-                holdingsMsg: "<div class='text-center text-gray-400'><i class='fa-solid fa-lock mb-2'></i><p>Investment Holdings Data Pending</p><p class='text-xs'>Client has not yet authorized portfolio transfer.</p></div>",
-                // NEW COPILOT INSIGHT STYLE
+                holdingsMsg: "<div class='text-center'><p>Status: <span class='font-bold text-red-700'>Portfolio Allocation Unknown</span></p><p class='text-sm text-gray-500'>Initial AUM is in a temporary Holding Account pending risk profiling and goal setting. Only insurance needs are confirmed.</p></div>",
                 copilotInit: {
-                    color: 'blue', icon: 'fa-solid fa-search', title: 'Gap Analysis: Missing Data',
-                    message: "Welcome Sarah (New Client). We have limited data. She mentioned **'Overseas Education'** for her son but we lack funding specifics.",
+                    color: 'purple',
+                    icon: 'fa-solid fa-handshake',
+                    title: 'Actionable: Complete Discovery',
+                    message: "We've gathered all static data. Use the conversation starters to confirm her risk appetite and long-term goals.",
                     actionText: "Generate Discovery Questions",
                     action: "talking_points"
                 },
                 chips: [
-                    { label: "Talking Points (Discovery)", action: "talking_points" },
-                    { label: "Education Cost Calculator", action: "calc" }
-                ]
+                    { label: "Generate Discovery Questions", action: "talking_points" },
+                ],
+                // New Goals HTML for newly onboarded client
+                goalsHtml: `
+                    <div class="py-10 text-center bg-gray-50 rounded-lg">
+                        <i class="fa-solid fa-flag-checkered text-3xl text-gray-400 mb-3"></i>
+                        <p class="text-md font-semibold text-gray-700">Financial Goal Discovery In Progress</p>
+                        <p class="text-sm text-gray-500">Use AI Agent for conversation starters to determine goals.</p>
+                    </div>
+                `
             },
             alice: {
                 name: "Alice Num",
                 img: "https://api.dicebear.com/7.x/avataaars/svg?seed=Alice",
-                status: "Premier Client | Client since 2021",
-                risk: "Moderate",
-                demo: "35 / Single",
-                job: "Tech Analyst",
-                aum: "$750,000",
-                timeline: "Long-term horizon",
-                goals: [
-                    { title: "First Home Purchase", desc: "Timeline: 5 Years • Est: $800k", priority: "MEDIUM", color: "blue" },
-                    { title: "Grow Portfolio", desc: "Target: $1M AUM in 3 years", priority: "HIGH PRIORITY", color: "red" }
-                ],
-                stats: [
-                    { label: "Equities", value: "70%", color: "bg-green-600", note: "Balanced ETF exposure" },
-                    { label: "Fixed Income", value: "20%", color: "bg-blue-400", note: "Bonds" },
+                status: "Premier Client | Client since 2022",
+                risk: "Growth",
+                demographics: "31 / Single",
+                job: "Software Engineer (Startup)",
+                aum: "$450,000",
+                // Updated timeline for Singapore home focus
+                timeline: "Focus on First Home (Singapore)", 
+                // Updated allocation for home purchase focus
+                allocation: [
+                    { label: "Equities (Growth)", value: "60%", color: "bg-green-600", note: "Long-term growth" },
+                    { label: "Fixed Income (Short Term)", value: "30%", color: "bg-blue-400", note: "Liquidity for downpayment" },
                     { label: "Cash & Equivalents", value: "10%", color: "bg-gray-400", note: "Emergency fund" }
                 ],
-                holdingsMsg: "<div class='text-center'><p>Current Strategy: <span class='font-bold text-gray-700'>Balanced Growth Portfolio</span></p><p class='text-xs'>Focus on low-cost global ETFs</p></div>",
-                // NEW COPILOT INSIGHT STYLE
+                holdingsMsg: "<div class='text-center'><p>Current Strategy: <span class='font-bold text-gray-700'>First Home Capital Accumulation</span></p><p class='text-xs'>Focus on low-cost global ETFs and liquid assets.</p></div>",
                 copilotInit: {
-                    color: 'green', icon: 'fa-solid fa-circle-check', title: 'Actionable Insight',
-                    message: "Alice's portfolio is **on track** for her goals. Review her mortgage options for her first home.",
+                    color: 'green',
+                    icon: 'fa-solid fa-circle-check',
+                    title: 'Actionable Insight',
+                    message: "Alice's portfolio is **on track** for her Singapore home goal. Review her mortgage options and loan-to-value ratio.",
                     actionText: "Check Mortgage Pre-Approval",
                     action: "mortgage"
                 },
                 chips: [
                     { label: "Review Mortgage Pre-Approval", action: "mortgage" },
                     { label: "Introduce new ETF", action: "etf" }
-                ]
+                ],
+                // New Goals HTML: Only First Home goal
+                goalsHtml: `
+                    <div>
+                        <p class="text-sm font-semibold text-gray-700 flex justify-between items-center">First Home (Singapore) <span class="text-xs font-normal px-2 py-0.5 bg-blue-100 text-blue-700 rounded-full">On Track</span></p>
+                        <div class="w-full bg-gray-200 rounded-full h-1.5 mt-2"><div class="bg-blue-600 h-1.5 rounded-full" style="width: 70%"></div></div>
+                        <p class="text-xs text-gray-500 mt-1 flex justify-between">
+                            <span>Target: $1.0M SGD</span>
+                            <span>Saved: $700K SGD</span>
+                        </p>
+                    </div>
+                `
             }
         };
 
@@ -236,66 +266,45 @@
             var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
             var results = regex.exec(location.search);
             return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
-        };
+        }
 
-        // INIT: Check URL parameter on load
-        window.onload = () => {
-            const urlClient = getUrlParameter('client');
-            const initialClient = clients[urlClient] ? urlClient : 'robert';
-            document.getElementById('client-selector').value = initialClient; // Set selector state
-            switchClient(initialClient);
-        };
+        // View Rendering Logic
+        function renderClientData(client) {
+            document.getElementById('header-title').textContent = `Financial Planning: ${client.name}`;
+            document.getElementById('p-img').src = client.img;
+            document.getElementById('p-name').textContent = client.name;
+            document.getElementById('p-status').textContent = client.status;
+            document.getElementById('p-risk').textContent = client.risk;
+            document.getElementById('p-demographics').textContent = client.demographics;
+            document.getElementById('p-job').textContent = client.job;
+            document.getElementById('p-aum').textContent = client.aum;
+            document.getElementById('p-timeline').textContent = client.timeline;
+            document.getElementById('p-holdings-msg').innerHTML = client.holdingsMsg;
+            document.getElementById('p-goals').innerHTML = client.goalsHtml; // Renders the dynamic goals
 
-        function switchClient(clientId) {
-            currentClient = clientId;
-            const data = clients[clientId];
+            // Render Allocation
+            const holdingsContainer = document.getElementById('p-holdings');
+            holdingsContainer.innerHTML = client.allocation.map(item => `
+                <div class="flex justify-between items-center text-sm">
+                    <p class="font-medium text-gray-700">${item.label}</p>
+                    <div class="flex items-center gap-2">
+                        <span class="text-xs text-gray-500">${item.note}</span>
+                        <span class="font-bold text-gray-900">${item.value}</span>
+                        <div class="w-2.5 h-2.5 rounded-full ${item.color}"></div>
+                    </div>
+                </div>
+            `).join('');
 
-            // Update Header & Profile
-            document.getElementById('header-title').innerText = `Financial Planning: ${data.name}`;
-            document.getElementById('p-name').innerText = data.name;
-            document.getElementById('p-img').src = data.img;
-            document.getElementById('p-status').innerText = data.status;
-            document.getElementById('p-risk').innerText = data.risk;
-            document.getElementById('p-demographics').innerText = data.demo;
-            document.getElementById('p-job').innerText = data.job;
-            document.getElementById('p-aum').innerText = data.aum;
-            document.getElementById('p-timeline').innerText = data.timeline;
-
-            // Update Goals
-            const goalsContainer = document.getElementById('goals-container');
-            goalsContainer.innerHTML = '';
-            data.goals.forEach(g => {
-                goalsContainer.innerHTML += `
-                    <div class="flex items-center p-3 bg-${g.color}-50 border-l-4 border-${g.color}-500 rounded-r">
-                        <div class="flex-1"><p class="font-bold text-gray-800">${g.title}</p><p class="text-xs text-gray-500">${g.desc}</p></div>
-                        <span class="text-xs font-bold text-${g.color}-700 bg-white px-2 py-1 rounded border border-${g.color}-100">${g.priority}</span>
-                    </div>`;
-            });
-
-            // Update Stats
-            const statsContainer = document.getElementById('stats-container');
-            statsContainer.innerHTML = '';
-            data.stats.forEach(s => {
-                let width = s.value.includes('%') ? s.value : '10%'; // specific width for numbers, default for unknown
-                statsContainer.innerHTML += `
-                    <div>
-                        <div class="flex justify-between text-sm mb-1"><span class="font-semibold">${s.label}</span><span class="font-bold">${s.value}</span></div>
-                        <div class="w-full bg-gray-200 rounded-full h-2"><div class="${s.color} h-2 rounded-full" style="width: ${width}"></div></div>
-                        <p class="text-xs text-gray-400 mt-1 text-right">${s.note}</p>
-                    </div>`;
-            });
-
-            // Update Holdings Panel
-            document.getElementById('holdings-panel').innerHTML = data.holdingsMsg;
-
-            // Render Copilot Insight in Main Window
-            const insightContainer = document.getElementById('copilot-insight-main-card');
-            const insight = data.copilotInit;
-            const insightColor = insight.color;
-            const insightStyle = `
-                <div class="bg-${insightColor}-100 rounded-xl p-5 shadow-xl border-l-8 border-${insightColor}-500 transition duration-300">
+            // Render Copilot Insight Card (Main)
+            const insightCard = document.getElementById('copilot-insight-main-card');
+            const insight = client.copilotInit;
+            const insightColor = insight.color; // 'red', 'purple', or 'green'
+            
+            insightCard.innerHTML = `
+                <div class="bg-${insightColor}-50 p-5 shadow-xl border-l-8 border-${insightColor}-500 transition duration-300">
                     <div class="flex items-start gap-4">
-                        <div class="text-4xl text-${insightColor}-700"><i class="${insight.icon}"></i></div> <div class="flex-1">
+                        <div class="text-4xl text-${insightColor}-700"><i class="${insight.icon}"></i></div>
+                        <div class="flex-1">
                             <h3 class="font-bold text-xl text-${insightColor}-800 mb-2 flex items-center">
                                 <span class="bg-${insightColor}-600 text-white text-xs font-bold px-2 py-0.5 rounded-full mr-2">ACTION</span> ${insight.title}
                             </h3>
@@ -307,22 +316,42 @@
                     </div>
                 </div>
             `;
-            insightContainer.innerHTML = insightStyle;
-            
-            // Clear Chat History and re-add initial welcome message (optional)
-            const chat = document.getElementById('chat-container');
-            chat.innerHTML = `<div class="flex gap-3 chat-bubble-in mb-4"><div class="w-8 h-8 bg-gray-900 rounded-full flex-shrink-0 flex items-center justify-center text-white text-xs"><i class="fa-solid fa-robot"></i></div><div class="bg-white p-3 rounded-lg rounded-tl-none shadow-sm border border-gray-200 text-sm text-gray-700 w-full">Ask me for a client summary, goal projection, or to recommend an investment strategy.</div></div>`;
 
-            // Update Chips
-            const chipsContainer = document.getElementById('suggestion-chips');
-            chipsContainer.innerHTML = '';
-            data.chips.forEach(c => {
-                chipsContainer.innerHTML += `<button onclick="chatAction('${c.action}')" class="whitespace-nowrap px-3 py-1 bg-gray-200 rounded-full text-xs text-gray-700 hover:text-brand-red hover:bg-gray-300 transition">${c.label}</button>`;
-            });
+            // Render Action Chips (Copilot Panel)
+            const chipsContainer = document.getElementById('action-chips');
+            chipsContainer.innerHTML = client.chips.map(chip => `
+                <button onclick="chatAction('${chip.action}')" class="text-xs px-3 py-1 bg-gray-200 rounded-full text-gray-700 hover:bg-gray-300 transition whitespace-nowrap">${chip.label}</button>
+            `).join('');
+
+            // Reset Chat and set client welcome
+            const chatContainer = document.getElementById('chat-container');
+            chatContainer.innerHTML = `
+                <div class="flex gap-3 chat-bubble-in mb-4">
+                    <div class="w-8 h-8 bg-gray-900 rounded-full flex-shrink-0 flex items-center justify-center text-white text-xs"><i class="fa-solid fa-robot"></i></div>
+                    <div class="bg-white p-3 rounded-lg rounded-tl-none shadow-sm border border-gray-200 text-sm text-gray-700 w-full">Welcome, John. I have loaded **${client.name}'s** Financial Planning profile.</div>
+                </div>
+                <div id="action-chips" class="flex flex-wrap gap-2 pt-2 border-t border-gray-100">
+                    </div>
+            `;
+            // Re-render chips into the newly cleared chat container
+            document.getElementById('action-chips').innerHTML = client.chips.map(chip => `
+                <button onclick="chatAction('${chip.action}')" class="text-xs px-3 py-1 bg-gray-200 rounded-full text-gray-700 hover:bg-gray-300 transition whitespace-nowrap">${chip.label}</button>
+            `).join('');
+
         }
 
-        // Helper function to send chat messages
-        function sendChatMessage(message, isUser = true) {
+        // Initialization
+        document.addEventListener('DOMContentLoaded', () => {
+            const clientFromUrl = getUrlParameter('client');
+            if (clientFromUrl && clients[clientFromUrl]) {
+                currentClient = clientFromUrl;
+            }
+            renderClientData(clients[currentClient]);
+        });
+
+
+        // Copilot Chat Functions
+        function sendChatMessage(message, isUser) {
             const chatContainer = document.getElementById('chat-container');
             
             if (isUser) {
@@ -338,42 +367,28 @@
         }
 
         function chatAction(action) {
-            let userText = "";
-            let botResp = "";
+            let userText = '';
+            let botResp = '';
 
-            if(currentClient === 'robert') {
-                if(action === 'funds') {
-                    userText = "Suggest funds to reduce cash drag";
-                    botResp = `To meet the $8M retirement goal, Robert needs equity exposure. <br><br>
-                    Recommendation:<br>
-                    1. <em>Schroder Asian Growth Fund</em> (4-Star)<br>
-                    2. <em>BlackRock Global Allocation</em><br><br>
-                    "Robert, these allow you to keep liquidity for the business while targeting **7% annual returns**."`;
+            if (currentClient === 'robert') {
+                if (action === 'funds') {
+                    userText = "Run Retirement Projection";
+                    botResp = `**Projection Run:** If Robert maintains 60% cash, he will miss his $8M target by **$2.0M**. Recommended action: Reallocate $1.5M of cash to Growth Strategy Funds.`;
                 } else if (action === 'property') {
-                    userText = "Show me the Florida property options";
-                    botResp = `Here is a strong match for his "Vacation Home" goal:<br>
-                    <div class="mt-2 border rounded overflow-hidden"><img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=400&h=150&fit=crop" class="w-full object-cover h-24"><div class="p-2 bg-white text-xs font-bold">Miami Coastal • $1.2M</div></div>
-                    <div class="mt-2 bg-green-100 text-green-800 p-2 rounded text-xs">HSBC Premier Mortgage Rate: <span class="font-bold">4.25% (Exclusive)</span></div>`;
+                    userText = "Show Florida Property Details";
+                    botResp = `**Florida Property:** Estimated value $1.2M. Robert has a pre-approved $450K bridge loan. The current strategy is to use $750K from his liquidity cash.`;
                 }
             } else if (currentClient === 'sarah') {
                 if(action === 'talking_points') {
                     userText = "Generate Discovery Questions";
-                    botResp = `Since we don't know her risk appetite yet, try these soft openers:<br><br>
-                    <ul class="list-disc pl-4 space-y-1">
-                        <li>"Sarah, for your son's education, are you looking at US Ivy Leagues or UK Russell Group? Tuitions vary significantly."</li>
-                        <li>"Do you currently have a Life Insurance policy that covers tuition fees in case of emergency?"</li>
-                    </ul>`;
-                } else if (action === 'calc') {
-                    userText = "Estimate Education Costs";
-                    botResp = `Projected Cost (Year 2030):<br>
-                    4-Year Degree @ Harvard/Yale<br>
-                    <span class="text-xl font-bold text-gray-800">$450,000 USD</span><br><br>
-                    <em>Suggested Action: Start a $5k/month education savings plan immediately.</em>`;
+                    // Updated QnA for new client discovery
+                    botResp = `**Discovery Conversation Starters for Sarah Jenkins:**<br><br> <ul class="list-disc pl-4 space-y-1"> <li>"Given your high focus on protection products, is your main goal capital preservation or wealth transfer to the next generation?"</li> <li>"How comfortable are you with market volatility for the portion of your portfolio outside of insurance products?"</li> <li>"What are your top 3 non-negotiable financial priorities over the next five years?"</li> </ul>`;
                 }
+                // No other actions defined for Sarah
             } else if (currentClient === 'alice') {
                 if(action === 'mortgage') {
                     userText = "Check Mortgage Pre-Approval";
-                    botResp = `Alice's pre-approval for up to $600,000 is still valid (expires Jan 2026). The best rate currently is **5.1% fixed for 5 years**.`;
+                    botResp = `Alice's pre-approval for a loan up to **$600,000 SGD** is valid until Jan 2026. Current best fixed rate is **3.1% for 3 years**. Advise her to utilize her liquid assets for the downpayment.`;
                 } else if (action === 'etf') {
                     userText = "Suggest new low-cost global ETF";
                     botResp = `The Vanguard FTSE Global All Cap UCITS ETF (VWRA) is a suitable, low-cost (**0.22% OCF**) option to diversify her core holdings.`;
