@@ -116,7 +116,7 @@
                 </div>
 
                 <div id="copilot-insight-card"
-                    class="max-w-4xl mx-auto bg-red-50 border-l-4 border-brand-red p-5 rounded-xl shadow-lg transition duration-300 hidden">
+                    class="max-w-4xl mx-auto bg-red-50 border-l-4 border-brand-red p-5 rounded-xl shadow-lg transition duration-300">
                     <div class="flex items-start gap-4">
                         <div class="text-4xl text-brand-red"><i class="fa-solid fa-bell"></i></div>
                         <div class="flex-1">
@@ -193,14 +193,15 @@
                 <div id="opportunity-results" class="max-w-5xl mx-auto hidden">
                     <div class="flex justify-between items-end mb-4 px-2">
                         <h3 class="font-bold text-gray-700 flex items-center"><i
-                                class="fa-solid fa-chart-line mr-2 text-brand-red"></i> Search Results (2)</h3>
+                                class="fa-solid fa-chart-line mr-2 text-brand-red"></i> Search Results (<span
+                                id="result-count">0</span>)</h3>
                         <button onclick="clearSearch()"
                             class="text-xs text-gray-500 hover:text-gray-700 font-semibold hover:underline flex items-center"><i
                                 class="fa-solid fa-xmark mr-1"></i> Clear Search</button>
                     </div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                        <a href="planning.html?client=robert"
-                            class="bg-white p-4 rounded-xl shadow-sm border border-gray-200 hover:shadow-md transition group">
+                    <div id="results-grid" class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                        <a id="client-robert" href="planning.html?client=robert"
+                            class="bg-white p-4 rounded-xl shadow-sm border border-gray-200 hover:shadow-md transition group client-card hidden">
                             <div class="flex items-center gap-4">
                                 <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Robert"
                                     class="w-10 h-10 rounded-full bg-red-50 flex-shrink-0">
@@ -209,30 +210,47 @@
                                     <p class="text-sm text-gray-500">Business Owner (Tech) • Age 52</p>
                                 </div>
                             </div>
-                            <div class="text-right">
+                            <div class="text-right mt-3">
                                 <p class="text-xs text-gray-500 uppercase">Cash & Equivalents</p>
                                 <p class="font-bold text-gray-800">$3,100,000</p>
                             </div>
-                            <div class="px-4 py-1 bg-red-100 text-red-600 rounded-full text-xs font-bold">High Liquidity
-                                (Cash Drag)</div>
+                            <div class="mt-3 px-4 py-1 bg-red-100 text-red-600 rounded-full text-xs font-bold text-center">
+                                High Liquidity (Cash Drag)</div>
                         </a>
-                        <a href="planning.html?client=sarah"
-                            class="bg-white p-4 rounded-xl shadow-sm border border-gray-200 hover:shadow-md transition group">
+                        <a id="client-alice" href="planning.html?client=alice"
+                            class="bg-white p-4 rounded-xl shadow-sm border border-gray-200 hover:shadow-md transition group client-card hidden">
+                            <div class="flex items-center gap-4">
+                                <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Alice"
+                                    class="w-10 h-10 rounded-full bg-blue-50 flex-shrink-0">
+                                <div>
+                                    <h4 class="font-bold text-lg">Alice Num</h4>
+                                    <p class="text-sm text-gray-500">Senior Manager (Finance) • Age 38</p>
+                                </div>
+                            </div>
+                            <div class="text-right mt-3">
+                                <p class="text-xs text-gray-500 uppercase">Maturing Assets</p>
+                                <p class="font-bold text-gray-800">$500,000</p>
+                            </div>
+                            <div class="mt-3 px-4 py-1 bg-blue-100 text-blue-600 rounded-full text-xs font-bold text-center">
+                                Fixed-Income Maturity Next Week</div>
+                        </a>
+                        <a id="client-sarah" href="planning.html?client=sarah"
+                            class="bg-white p-4 rounded-xl shadow-sm border border-gray-200 hover:shadow-md transition group client-card hidden">
                             <div class="flex items-center gap-4">
                                 <div
-                                    class="w-10 h-10 rounded-full bg-purple-600 text-white flex items-center justify-center font-bold text-lg group-hover:bg-purple-700 transition">
+                                    class="w-10 h-10 rounded-full bg-purple-600 text-white flex items-center justify-center font-bold text-lg group-hover:bg-purple-700 transition flex-shrink-0">
                                     SJ</div>
                                 <div>
                                     <h4 class="font-bold text-lg">Sarah Jenkins</h4>
                                     <p class="text-sm text-gray-500">Director @ Google • Age 48</p>
                                 </div>
                             </div>
-                            <div class="text-right">
-                                <p class="text-xs text-gray-500 uppercase">Investable Cash</p>
-                                <p class="font-bold text-gray-800">$1,150,000</p>
+                            <div class="text-right mt-3">
+                                <p class="text-xs text-gray-500 uppercase">Key Goals Missing</p>
+                                <p class="font-bold text-gray-800">Education Fund</p>
                             </div>
-                            <div class="px-4 py-1 bg-gray-100 text-gray-600 rounded-full text-xs font-bold">High Income
-                            </div>
+                            <div class="mt-3 px-4 py-1 bg-green-100 text-green-600 rounded-full text-xs font-bold text-center">
+                                High Income, Missing Goal</div>
                         </a>
                     </div>
                 </div>
@@ -297,25 +315,69 @@
             chatContainer.scrollTop = chatContainer.scrollHeight;
         }
 
-        // Search logic
-        function triggerSearch() {
-            const searchText = document.getElementById('crm-search-input').value.trim();
-            if (searchText === '') return;
+        // Function to render the specific client results
+        function renderResults(clientIds, resultMessage) {
+            const allCards = document.querySelectorAll('.client-card');
+            allCards.forEach(card => card.classList.add('hidden'));
 
-            // Hide recent contacts and nudge card
+            clientIds.forEach(id => {
+                const card = document.getElementById(`client-${id}`);
+                if (card) {
+                    card.classList.remove('hidden');
+                }
+            });
+
+            document.getElementById('result-count').textContent = clientIds.length;
             document.getElementById('recent-contacts-section').classList.add('hidden');
             document.getElementById('copilot-insight-card').classList.add('hidden');
-
-            // Show results container
             document.getElementById('opportunity-results').classList.remove('hidden');
-
-            // User search feedback
-            sendChatMessage(`Searching for: ${searchText}`, true);
 
             // Bot response (after a slight delay for effect)
             setTimeout(() => {
-                sendChatMessage(`I found 2 profiles matching that criteria. <br>Robert Chen matches 95% of your 'Tech Sector' parameters due to his recent liquidity event.`, false);
+                sendChatMessage(resultMessage, false);
             }, 600);
+        }
+
+        // Search logic
+        function triggerSearch() {
+            const searchText = document.getElementById('crm-search-input').value.trim().toLowerCase();
+            if (searchText === '') return;
+
+            let clientsToShow = [];
+            let aiResponse = "";
+            let resultCount = 0;
+
+            // 1. Clients over 50 in Tech sector with >$1M cash, display robert chen
+            if (searchText.includes('clients over 50 in tech sector with >$1m cash')) {
+                clientsToShow = ['robert'];
+                resultCount = 1;
+                aiResponse = `I found **${resultCount} profile** matching that criteria. Robert Chen is a high-liquidity client in the Tech sector.`;
+            }
+            // 2. Clients with maturing fixed-income next week, display robert chen and Alice Num
+            else if (searchText.includes('clients with maturing fixed-income next week')) {
+                clientsToShow = ['robert', 'alice'];
+                resultCount = 2;
+                aiResponse = `I found **${resultCount} profiles** with fixed-income assets maturing next week. This is an excellent opportunity for a portfolio review.`;
+            }
+            // 3. Show clients missing an Education Fund, display sarah jenkins
+            else if (searchText.includes('show clients missing an education fund')) {
+                clientsToShow = ['sarah'];
+                resultCount = 1;
+                aiResponse = `I found **${resultCount} profile** that is missing an Education Fund. Sarah Jenkins has high income and is ready for goal-based planning.`;
+            }
+            // Default Case
+            else {
+                // Keep the default search result for a general query like the placeholder (optional)
+                // For this example, we'll default to the 'high cash' result for any other input
+                clientsToShow = ['robert', 'sarah'];
+                resultCount = 2;
+                aiResponse = `I found **${resultCount} profiles** matching your custom search: '${searchText}'.`;
+            }
+
+            // User search feedback
+            sendChatMessage(`Searching for: ${document.getElementById('crm-search-input').value.trim()}`, true);
+
+            renderResults(clientsToShow, aiResponse);
         }
 
         function fillSearch(query) {
@@ -324,11 +386,22 @@
         }
 
         function clearSearch() {
+            const allCards = document.querySelectorAll('.client-card');
+            allCards.forEach(card => card.classList.add('hidden'));
+
+            document.getElementById('result-count').textContent = '0';
             document.getElementById('recent-contacts-section').classList.remove('hidden');
-            // Ensure nudge is visible when clearing search
             document.getElementById('copilot-insight-card').classList.remove('hidden');
             document.getElementById('opportunity-results').classList.add('hidden');
             document.getElementById('crm-search-input').value = '';
+
+            // Clear chat (optional, but good for resetting state)
+            const chatContainer = document.getElementById('chat-container');
+            // Remove all messages except the welcome message and action chips
+            const messages = chatContainer.children;
+            while (messages.length > 2) {
+                chatContainer.removeChild(messages[1]);
+            }
         }
 
         function handleCopilotInput() {
